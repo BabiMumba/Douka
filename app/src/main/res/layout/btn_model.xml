@@ -13,5 +13,5 @@
     android:textAllCaps="false"
     android:textColor="@color/primary_text"
     android:textStyle="bold"
-    app:cornerRadius="@dimen/_10sdp"
+    app:cornerRadius="@dimen/_15sdp"
     />

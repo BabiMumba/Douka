@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Duka</string>
+    <string name="app_name">Douka</string>
+    <string name="slogan_onboard">Transformez votre quotidien \nen un <font fgcolor='#ff4747'>voyage shopping</font></string>
+
+    <string name="already_count">J\'ai deja un <font fgcolor="#ff4747"> <u>compte</u> </font></string>
+    <string name="min_slogan">retrouver plus de produit a <font color='#ff4747'>bas prix</font> a votre portee</string>
+    <string name="terme_condition">J\'accepte les <font color='#ff4747'><b><u>termes et conditions</u></b> </font></string>
+    <string name="create_count">Vous n\'avez pas de compte? <font color="red"><u>Créez-en un</u></font></string>
+    <string name="forgot"><b><u><font color="#ff4747">Mot de passe oublié?</font></u></b></string>
 </resources>

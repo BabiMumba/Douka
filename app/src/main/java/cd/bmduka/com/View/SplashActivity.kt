@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             //rediriger vers la page d'accueil
-            Utils.newIntentFinish(this, MainActivity::class.java)
+            Utils.newIntentFinish(this, OnboardActivity::class.java)
         }, 3000)
 
 
