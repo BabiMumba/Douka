@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#ff4747</color>
+    <color name="rouge">#FF0000</color>
+    <color name="vert">#2FFF00</color>
+    <color name="Accent">#ff4747</color>
+    <color name="backgroud">#F7F7FA</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#9B9A9D</color>
+    <color name="input_background">#D8D5D5</color>
+    <color name="grey">#a9a9a9</color>
+    <color name="black">#000000</color>
+    <color name="gray">#dddddd</color>
+    <color name="orange_claire">#fbe6dd</color>
+    <color name="loader_background_color">#55AAAAAA</color>
+    <color name="jaune">#FFC107</color>
 </resources>

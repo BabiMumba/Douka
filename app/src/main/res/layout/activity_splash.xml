@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/_50ssp"
+            android:textSize="@dimen/_60ssp"
             android:textStyle="bold"
             />
         <TextView
