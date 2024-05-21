@@ -3,9 +3,16 @@
     <style name="Base.Theme.Duka" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/Accent</item>
         <item name="colorPrimaryDark" >@color/Accent</item>
-        <!-- <item name="android:statusBarColor" tools:targetApi="l">@color/Accent</item> -->
+         <item name="android:statusBarColor" tools:targetApi="l">@color/Accent</item>
         <item name="colorAccent">@color/Accent</item>
     </style>
 
     <style name="Theme.Duka" parent="Base.Theme.Duka" />
+
+    <style name="ShapeAppearanceOverlay.CardView" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">15%</item>
+        <item name="cornerSizeBottomRight">15%</item>
+    </style>
 </resources>

@@ -5,7 +5,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cd.bmduka.com.MainActivity
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -19,6 +21,9 @@ class RegisterActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        binding.btnRegister.setOnClickListener {
+            Utils.newIntent(this, MainActivity::class.java)
         }
 
     }
