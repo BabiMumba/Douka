@@ -7,4 +7,7 @@
     <string name="terme_condition">J\'accepte les <font color='#ff4747'><b><u>termes et conditions</u></b> </font></string>
     <string name="create_count">Vous n\'avez pas de compte? <font color="red"><u>Créez-en un</u></font></string>
     <string name="forgot"><b><u><font color="#ff4747">Mot de passe oublié?</font></u></b></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
 </resources>
