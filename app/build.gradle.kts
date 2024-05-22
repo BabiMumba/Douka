@@ -53,5 +53,6 @@ dependencies {
     implementation ("com.intuit.sdp:sdp-android:1.0.6")//cette bibliothèque permet de gérer les tailles des éléments de l'interface utilisateur
     implementation ("com.intuit.ssp:ssp-android:1.0.6")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.tbuonomo:dotsindicator:5.0")
 
 }
