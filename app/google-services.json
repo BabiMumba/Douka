@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "255750424355",
+    "project_id": "douka-store",
+    "storage_bucket": "douka-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255750424355:android:5d679469b0c1277e472e96",
+        "android_client_info": {
+          "package_name": "cd.bmduka.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbBNihGVJhR8jh38zZGHIAydQaaITnjWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
