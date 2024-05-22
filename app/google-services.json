@@ -12,7 +12,20 @@
           "package_name": "cd.bmduka.com"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "255750424355-1elp6naomchb4rt1bdaeedillgajtied.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cd.bmduka.com",
+            "certificate_hash": "60020799a87d43534a93c2f07887591e0052a6a9"
+          }
+        },
+        {
+          "client_id": "255750424355-tib367ac6bujacp7u6q69oretrf5vbkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCbBNihGVJhR8jh38zZGHIAydQaaITnjWE"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255750424355-tib367ac6bujacp7u6q69oretrf5vbkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

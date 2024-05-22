@@ -23,7 +23,22 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.selectedItemId = R.id.homeMenu
         loadFragment(HomeFragment())
+        inifragment()
 
+
+
+
+
+
+
+    }
+    fun loadFragment(fragment: Fragment){
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.nav_fragment, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    fun inifragment(){
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.homeMenu -> {
@@ -39,15 +54,5 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
-
-
-
-
-    }
-    fun loadFragment(fragment: Fragment){
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.nav_fragment, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 }
