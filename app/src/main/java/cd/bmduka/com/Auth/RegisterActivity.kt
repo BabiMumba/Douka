@@ -9,6 +9,7 @@ import cd.bmduka.com.MainActivity
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivityRegisterBinding
+import com.google.rpc.context.AttributeContext.Auth
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding
@@ -23,8 +24,56 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
         binding.btnRegister.setOnClickListener {
-            Utils.newIntent(this, MainActivity::class.java)
+            val username = binding.edtName.text.toString()
+            val email = binding.edtEmail.text.toString()
+            val password = binding.password.text.toString()
+            if(checkFields()){
+                Utils.isloading(binding.btnRegister,binding.progress,true)
+               val createUser =Authentification.createUserWithEmail(email, password,  username)
+                createUser.addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Utils.isloading(binding.btnRegister,binding.progress,false)
+                        Utils.showToast(this, "Compte créé avec succès")
+                    }else{
+                        Utils.isloading(binding.btnRegister,binding.progress,false)
+                        Utils.showToast(this, "Erreur: ${it.exception?.message}")
+                    }
+                }
+
+
+
+            }
         }
 
+    }
+    //verifier si tous les champs sont remplis
+    private fun checkFields(): Boolean {
+        if (binding.edtName.text.toString().isEmpty()) {
+            Utils.showToast(this, "Veuillez entrer votre nom")
+            return false
+        }
+        if (binding.edtEmail.text.toString().isEmpty()) {
+            Utils.showToast(this, "Veuillez entrer votre email")
+            return false
+        }
+        //verifier si l'email est valide
+        if (!Utils.isValidEmail(binding.edtEmail.text.toString())) {
+            Utils.showToast(this, "Veuillez entrer un email valide")
+            return false
+        }
+        if (binding.password.text.toString().isEmpty()) {
+            Utils.showToast(this, "Veuillez entrer votre mot de passe")
+            return false
+        }
+        if (binding.password.text.toString().length < 6) {
+            Utils.showToast(this, "Le mot de passe doit contenir au moins 6 caractères")
+            return false
+        }
+        //verifier le check box de terme et condition
+        if (!binding.accepteTerme.isChecked) {
+            Utils.showToast(this, "Veuillez accepter les termes et conditions")
+            return false
+        }
+        return true
     }
 }

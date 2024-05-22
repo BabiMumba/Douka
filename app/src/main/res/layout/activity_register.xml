@@ -109,6 +109,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <CheckBox
+                android:id="@+id/accepte_terme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/terme_condition"
@@ -117,20 +118,32 @@
                 android:textColor="@color/primary_text"
                 />
         </LinearLayout>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_register"
-            android:layout_margin="@dimen/_10sdp"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/Accent"
-            android:padding="@dimen/_10sdp"
-            android:text="Creer un compte"
-            android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:cornerRadius="@dimen/_10sdp"
-            />
+            >
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_register"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Accent"
+                android:padding="@dimen/_10sdp"
+                android:text="Creer un compte"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/_10sdp"
+                />
+        </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
