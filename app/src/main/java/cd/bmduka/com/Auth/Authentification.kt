@@ -11,7 +11,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 object Authentification {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
     //fonction pour verifier si l'utilisateur est connecté
@@ -22,11 +21,9 @@ object Authentification {
     fun createUserWithEmail(email: String, password: String, name: String): Task<AuthResult> {
         return auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val uid = auth.currentUser?.uid
-                uid?.let {
-                    val user = User(it, name, email, password)
-                    db.collection("users").document(it).set(user)
-                }
+                Log.d("Authentification", "createUserWithEmail:success")
+            }else{
+                Log.w("Authentification", "createUserWithEmail:failure", task.exception)
             }
         }
     }

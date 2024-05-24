@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import cd.bmduka.com.MainActivity
+import cd.bmduka.com.Model.User
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivityRegisterBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.rpc.context.AttributeContext.Auth
 
 class RegisterActivity : AppCompatActivity() {
@@ -27,13 +29,15 @@ class RegisterActivity : AppCompatActivity() {
             val username = binding.edtName.text.toString()
             val email = binding.edtEmail.text.toString()
             val password = binding.password.text.toString()
+            val date = Utils.getCurrentDate()
+            val uid = Utils.GetUserId()
             if(checkFields()){
                 Utils.isloading(binding.btnRegister,binding.progress,true)
                val createUser =Authentification.createUserWithEmail(email, password,  username)
                 createUser.addOnCompleteListener {
                     if(it.isSuccessful){
-                        Utils.isloading(binding.btnRegister,binding.progress,false)
-                        Utils.showToast(this, "Compte créé avec succès")
+                        val user = User(uid,username,email,password,date)
+                        SaveUserToFirestore(user)
                     }else{
                         Utils.isloading(binding.btnRegister,binding.progress,false)
                         Utils.showToast(this, "Erreur: ${it.exception?.message}")
@@ -43,6 +47,10 @@ class RegisterActivity : AppCompatActivity() {
 
 
             }
+        }
+
+        binding.btnGoogle.setOnClickListener {
+           // val gso
         }
 
     }
@@ -75,5 +83,19 @@ class RegisterActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    fun SaveUserToFirestore(user: User){
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users").document(user.uid).set(user)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Utils.isloading(binding.btnRegister,binding.progress,false)
+                    Utils.newIntentFinish(this, MainActivity::class.java)
+                }else{
+                    Utils.isloading(binding.btnRegister,binding.progress,false)
+                    Utils.showToast(this, "Erreur: ${it.exception?.message}")
+                }
+            }
     }
 }

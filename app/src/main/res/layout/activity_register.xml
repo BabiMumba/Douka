@@ -127,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/progress"
                 android:layout_centerHorizontal="true"
+                android:indeterminate="true"
                 android:visibility="gone"
                 />
             <com.google.android.material.button.MaterialButton
@@ -160,6 +161,7 @@
             app:cardCornerRadius="@dimen/_10sdp"
             app:strokeColor="@color/Accent"
             app:strokeWidth="@dimen/_1sdp"
+            android:id="@+id/btn_google"
             >
             <LinearLayout
                 android:layout_width="match_parent"

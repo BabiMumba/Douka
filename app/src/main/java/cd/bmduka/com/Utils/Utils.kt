@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import java.util.Calendar
 
 object Utils {
     //show toast
@@ -40,5 +43,21 @@ object Utils {
     }
     fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+    fun getCurrentDate(): Timestamp {
+        return Timestamp.now()
+    }
+
+    fun GetUserId():String{
+        val FIREBASE_USER = FirebaseAuth.getInstance().currentUser
+        var id_vendeur = FIREBASE_USER!!.email?.substringBefore("@").toString()
+        //retirer les points et les caracteres speciaux
+        for (i in id_vendeur.indices){
+            if (id_vendeur[i] == '.' || id_vendeur[i] == '#' || id_vendeur[i] == '$' || id_vendeur[i] == '[' || id_vendeur[i] == ']'){
+                id_vendeur = id_vendeur.replace(id_vendeur[i].toString(),"")
+            }
+        }
+
+        return id_vendeur
     }
 }
