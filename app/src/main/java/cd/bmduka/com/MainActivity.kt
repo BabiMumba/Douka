@@ -55,4 +55,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun inibanner(){
+        binding.bottomNavigationView
+    }
 }
