@@ -190,8 +190,8 @@
                         android:layout_height="wrap_content"
                         app:dotsColor="@color/grey"
                         app:dotsCornerRadius="8dp"
-                        app:dotsSize="@dimen/_3sdp"
-                        app:dotsSpacing="@dimen/_1sdp"
+                        app:dotsSize="@dimen/_5sdp"
+                        app:dotsSpacing="@dimen/_2sdp"
                         app:dotsWidthFactor="2.5"
                         app:selectedDotColor="@color/Accent"
                         app:progressMode="true"
@@ -230,18 +230,14 @@
                         android:textColor="@color/Accent"
                         android:textStyle="bold" />
                 </RelativeLayout>
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp"
-                    android:gravity="center"
-                    >
-                    <include layout="@layout/dot_categories"/>
-                    <include layout="@layout/dot_categories"/>
-                    <include layout="@layout/dot_categories"/>
-                    <include layout="@layout/dot_categories"/>
-                </LinearLayout>
+                    tools:itemCount="2"
+                    android:id="@+id/recycler_categories"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    tools:listitem="@layout/dot_categories"
+                    />
                 <RelativeLayout
                     android:id="@+id/rel_two"
                     android:layout_width="match_parent"
@@ -260,17 +256,17 @@
                         />
 
                 </RelativeLayout>
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    android:id="@+id/recycler_filter"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    tools:listitem="@layout/item_filter"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp"
-                    android:gravity="center"
-                    >
-                    <include layout="@layout/item_filter"/>
-                    <include layout="@layout/item_filter"/>
-                    <include layout="@layout/item_filter"/>
-                </LinearLayout>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                    />
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

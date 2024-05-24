@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_10sdp"
 
+
         >
         <TextView
             android:id="@+id/nom_filter"
