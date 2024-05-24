@@ -165,7 +165,7 @@
                     android:layout_marginTop="@dimen/_10sdp">
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/progressBar"
+                        android:id="@+id/progressBar_slider"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"

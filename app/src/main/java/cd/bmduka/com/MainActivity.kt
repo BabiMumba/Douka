@@ -25,12 +25,6 @@ class MainActivity : AppCompatActivity() {
         loadFragment(HomeFragment())
         inifragment()
 
-
-
-
-
-
-
     }
     fun loadFragment(fragment: Fragment){
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -56,7 +50,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun inibanner(){
-        binding.bottomNavigationView
-    }
+
 }
