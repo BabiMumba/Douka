@@ -25,6 +25,12 @@ class SliderAdapter(
         notifyDataSetChanged()
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
+        context = parent.context
+        val inflater = LayoutInflater.from(context)
+            .inflate(R.layout.slider_container,parent,false)
+        return SliderViewHolder(inflater)
+    }
     inner class SliderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val image: ImageView = itemView.findViewById(R.id.slider_image)
          fun setImage(sliderItems: SliderModel,context: Context) {
@@ -37,12 +43,6 @@ class SliderAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
-        val context = parent.context
-        val inflater = LayoutInflater.from(context)
-            .inflate(R.layout.slider_container,parent,false)
-        return SliderViewHolder(inflater)
-    }
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
         holder.setImage(sliderItems[position],context)
