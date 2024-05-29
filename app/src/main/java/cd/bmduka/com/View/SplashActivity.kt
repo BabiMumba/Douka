@@ -1,5 +1,6 @@
 package cd.bmduka.com.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,7 @@ import cd.bmduka.com.MainActivity
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivitySplashBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
     lateinit var binding: ActivitySplashBinding
@@ -25,11 +27,16 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
+        val auth = FirebaseAuth.getInstance()
         //afficher le splash screen pendant 3 secondes
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             //rediriger vers la page d'accueil
-            Utils.newIntentFinish(this, MainActivity::class.java)
+            if(auth.currentUser != null){
+                startActivity(Intent(this, MainActivity::class.java))
+            }else{
+                startActivity(Intent(this, OnboardActivity::class.java))
+            }
         }, 3000)
 
 

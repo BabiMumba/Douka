@@ -237,6 +237,8 @@
                     android:id="@+id/recycler_categories"
                     android:layout_marginTop="@dimen/_5sdp"
                     tools:listitem="@layout/dot_categories"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
                     />
                 <RelativeLayout
                     android:id="@+id/rel_two"
@@ -268,16 +270,15 @@
 
                     />
             </LinearLayout>
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/_10sdp"
-            android:gravity="center"
-            >
-            <include layout="@layout/viewholder_product"/>
-            <include layout="@layout/viewholder_product"/>
-        </LinearLayout>
+            android:id="@+id/recycler_product"
+            android:layout_marginTop="@dimen/_5sdp"
+            tools:listitem="@layout/viewholder_product"
+            tools:itemCount="1"
+            android:orientation="vertical"
+            />
 
 
         </LinearLayout>

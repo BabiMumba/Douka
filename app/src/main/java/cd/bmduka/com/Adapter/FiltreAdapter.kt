@@ -1,4 +1,4 @@
-package cd.bmduka.com.Model
+package cd.bmduka.com.Adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import cd.bmduka.com.Model.Filtre
 import cd.bmduka.com.R
 import com.google.android.material.card.MaterialCardView
 
 class FiltreAdapter(val filtres: ArrayList<Filtre>): RecyclerView.Adapter<FiltreAdapter.FiltreViewHolder>() {
 
     //la methode clickListener est une fonction qui prend un filtre en parametre et ne retourne rien
-    private var onItemClickListener:OnItemClickListener? = null
+    private var onItemClickListener: OnItemClickListener? = null
 
     fun setOnItemClickListener(listener: OnItemClickListener){
         onItemClickListener = listener
@@ -38,7 +39,7 @@ class FiltreAdapter(val filtres: ArrayList<Filtre>): RecyclerView.Adapter<Filtre
 
     inner class FiltreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("UseCompatLoadingForColorStateLists", "NotifyDataSetChanged")
-        fun bind(filtre: Filtre,position: Int) {
+        fun bind(filtre: Filtre, position: Int) {
             itemView.findViewById<TextView>(R.id.nom_filter).text = filtre.nom
             itemView.setOnClickListener {
                 val clickedFilter = filtres[position]
@@ -56,14 +57,13 @@ class FiltreAdapter(val filtres: ArrayList<Filtre>): RecyclerView.Adapter<Filtre
             }
 
             // Changer la couleur du filtre sélectionné
-            //val color = ContextCompat.getColorStateList(itemView.context, R.color.Accent)
             itemView.findViewById<MaterialCardView>(R.id.card_filter).backgroundTintList =
                 if (filtre.isSelected) {
                     val color = ContextCompat.getColorStateList(itemView.context, R.color.Accent)
                     color
                 } else {
-                    val color = ContextCompat.getColorStateList(itemView.context, R.color.white)
-                    color
+                    //on laisse la couleur par defaut
+                    null
                 }
         }
     }

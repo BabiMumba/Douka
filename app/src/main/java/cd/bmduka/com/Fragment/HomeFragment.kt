@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -13,10 +13,11 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import cd.bmduka.com.Adapter.CategorieHomeAdapter
 import cd.bmduka.com.Adapter.SliderAdapter
 import cd.bmduka.com.Model.Filtre
-import cd.bmduka.com.Model.FiltreAdapter
+import cd.bmduka.com.Adapter.FiltreAdapter
+import cd.bmduka.com.Adapter.ProduitAdapter
+import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.homecategorie
-import cd.bmduka.com.R
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentHomeBinding
 
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
         initBanner()
         init_categories()
         initFilter()
+        initProduct()
 
 
         return binding.root
@@ -106,6 +108,24 @@ class HomeFragment : Fragment() {
         }
         binding.recyclerFilter.adapter?.notifyDataSetChanged()
 
+    }
+
+    fun initProduct(){
+        val liste_product = ArrayList<Produit>()
+        liste_product.add(Produit("Produit A",20))
+        liste_product.add(Produit("Produit B",30))
+        liste_product.add(Produit("Produit C",40))
+        liste_product.add(Produit("Produit D",50))
+        liste_product.add(Produit("Produit E",60))
+
+        binding.recyclerProduct.apply {
+            adapter = ProduitAdapter(liste_product)
+            //afficher dans une grille
+            layoutManager = GridLayoutManager(requireContext(),2)
+            setHasFixedSize(true)
+
+        }
+        binding.recyclerProduct.adapter?.notifyDataSetChanged()
     }
 
 
