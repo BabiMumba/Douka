@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.DetaillPageActivity
 import cd.bmduka.com.databinding.ViewholderProductBinding
 
 class ProduitAdapter(val list_produit: ArrayList<Produit>): RecyclerView.Adapter<ProduitAdapter.ProduitViewHolder>() {
@@ -37,6 +39,9 @@ class ProduitAdapter(val list_produit: ArrayList<Produit>): RecyclerView.Adapter
        // val binding = holder.itemView
         holder.name.text = item.nom
         holder.price.text = item.prix.toString()
+        holder.itemView.setOnClickListener {
+            Utils.newIntent(holder.itemView.context,DetaillPageActivity::class.java)
+        }
 
 
     }

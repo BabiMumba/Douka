@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import cd.bmduka.com.Fragment.ChatFragment
+import cd.bmduka.com.Fragment.FavoriFragment
 import cd.bmduka.com.Fragment.HomeFragment
 import cd.bmduka.com.Fragment.ProfileFragment
 import cd.bmduka.com.databinding.ActivityMainBinding
@@ -39,8 +41,16 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment())
                     return@setOnItemSelectedListener true
                 }
+                R.id.favoris_frg -> {
+                    loadFragment(FavoriFragment())
+                    return@setOnItemSelectedListener true
+                }
                 R.id.profileMenu -> {
                     loadFragment(ProfileFragment())
+                    return@setOnItemSelectedListener true
+                }
+                R.id.chat_fragment -> {
+                    loadFragment(ChatFragment())
                     return@setOnItemSelectedListener true
                 }
 
