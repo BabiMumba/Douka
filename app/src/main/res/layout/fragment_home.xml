@@ -100,44 +100,63 @@
 
                     </RelativeLayout>
 
-                    <com.google.android.material.card.MaterialCardView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
                         android:layout_below="@id/location_layout"
-                        app:cardElevation="@dimen/_5sdp"
-                        app:cardCornerRadius="@dimen/_5sdp"
-                        android:backgroundTint="@color/white"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:id="@+id/search_layout"
+                        android:layout_marginTop="@dimen/_15sdp"
                         >
-                        <LinearLayout
-                            android:layout_margin="@dimen/_2sdp"
-                            android:padding="@dimen/_5sdp"
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardElevation="@dimen/_5sdp"
+                            app:cardCornerRadius="@dimen/_5sdp"
+                            android:backgroundTint="@color/white"
+                            android:id="@+id/search_layout"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@id/search_camera"
+                            >
+                            <LinearLayout
+                                android:layout_margin="@dimen/_2sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                >
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/baseline_search_24"
+                                    app:tint="@color/primary"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rechercher un produit"
+                                    android:textColor="@color/grey"
+                                    android:textStyle="normal"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/search_camera"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            >
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/baseline_search_24"
-                                app:tint="@color/primary"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Rechercher un produit"
-                                android:textColor="@color/grey"
-                                android:textStyle="normal"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:fontFamily="@font/poppins_regular"
-                                />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
+                            android:src="@drawable/baseline_photo_camera_24"
+                            app:tint="@color/white"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/notif_border"
+                            android:padding="@dimen/_8sdp"
+                            android:layout_centerHorizontal="true"
+                            />
+                    </RelativeLayout>
 
 
                 </RelativeLayout>

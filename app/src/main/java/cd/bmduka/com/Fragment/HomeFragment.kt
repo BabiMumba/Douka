@@ -18,6 +18,8 @@ import cd.bmduka.com.Adapter.ProduitAdapter
 import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.homecategorie
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.SearchByImageActivity
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentHomeBinding
 
@@ -35,6 +37,9 @@ class HomeFragment : Fragment() {
         init_categories()
         initFilter()
         initProduct()
+        binding.searchCamera.setOnClickListener {
+            Utils.newIntent(requireActivity(),SearchByImageActivity::class.java)
+        }
 
 
         return binding.root
@@ -97,10 +102,8 @@ class HomeFragment : Fragment() {
     fun initFilter(){
         val liste_filtre = ArrayList<Filtre>()
         liste_filtre.add(Filtre("Tous",true))
-        liste_filtre.add(Filtre("Homme",false))
-        liste_filtre.add(Filtre("Femme",false))
-        liste_filtre.add(Filtre("Populaire",false))
-        liste_filtre.add(Filtre("Recement ajouter",false))
+        liste_filtre.add(Filtre("Recement Ajouter",false))
+        liste_filtre.add(Filtre("Recommandation",false))
 
         binding.recyclerFilter.apply {
             adapter = FiltreAdapter(liste_filtre)
