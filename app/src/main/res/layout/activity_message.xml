@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/Accent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.MessageActivity">
+    <RelativeLayout
+        android:id="@+id/rela_tive"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        >
+        <ImageView
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:id="@+id/back"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/profile"
+                android:background="@drawable/grey_bg"
+                android:id="@+id/image_profile"
+                android:layout_alignParentStart="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Malothy"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@id/image_profile"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/user_name"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="En ligne"
+                android:layout_below="@id/user_name"
+                android:layout_toEndOf="@id/image_profile"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="@color/secondary_text"
+                android:fontFamily="@font/poppins_light"
+                />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@id/rela_tive"
+        android:layout_above="@id/edt_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/white_bg"
+        android:padding="@dimen/_10sdp"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            tools:itemCount="2"
+            tools:listitem="@layout/sent_message_item"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/edt_msg"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_message_text_field"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            android:hint="@string/message"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:maxLines="4"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            android:singleLine="false"
+            android:textColor="@color/black"
+            android:textColorHint="#00838F"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_send_icon"
+            android:contentDescription="@string/send_message_btn"
+            android:src="@drawable/ic_send"
+            tools:ignore="ImageContrastCheck" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
