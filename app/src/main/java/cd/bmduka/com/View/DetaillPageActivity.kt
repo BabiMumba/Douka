@@ -12,10 +12,9 @@ class DetaillPageActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetaillPageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+      //  enableEdgeToEdge()
         binding = ActivityDetaillPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.back.setOnClickListener {
             onBackPressed()
         }

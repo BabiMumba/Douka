@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.FavoriFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           >
+           <Toolbar
+               android:layout_alignParentTop="true"
+               android:background="@color/Accent"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               >
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Mes favoris"
+                   android:fontFamily="@font/poppins_bold"
+                   android:textSize="@dimen/_14ssp"
+                   android:textColor="@color/white"
+                   />
 
-</FrameLayout>
+
+           </Toolbar>
+           <TextView
+               android:layout_centerInParent="true"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="@color/secondary_text"
+               android:text="Vos favoris s'afficherons ici"
+               android:layout_gravity="center"
+               android:gravity="center"
+               />
+       </RelativeLayout>
+
+</RelativeLayout>

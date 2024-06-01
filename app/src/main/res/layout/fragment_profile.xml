@@ -1,14 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroud"
+    android:orientation="vertical"
     tools:context=".Fragment.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Toolbar
+        android:background="@color/Accent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Je gere mon compte"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/white"
+            />
 
-</FrameLayout>
+
+    </Toolbar>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:background="@color/backgroud"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.card.MaterialCardView
+                android:backgroundTint="@color/card_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="@dimen/_10sdp"
+
+                >
+                <RelativeLayout
+                    android:background="@color/card_background"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:src="@drawable/profile"
+                        android:background="@drawable/grey_bg"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:id="@+id/image_profile"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marcelo"
+                            android:textSize="@dimen/_12ssp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:id="@+id/user_name"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marcelo@gmail.com"
+                            android:id="@+id/user_mail"
+                            android:fontFamily="@font/poppins_light"
+                            android:textColor="@color/secondary_text"
+                            />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mon Profil"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_regular"
+                            />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/carv_resultat"
+                    android:elevation="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <LinearLayout
+                        android:background="@color/card_background"
+                        android:padding="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        >
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:id="@+id/iv_resultat"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:maxHeight="@dimen/_80sdp"
+                            android:src="@drawable/baseline_home_filled_24"
+                            app:tint="@color/Accent"
+                            />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:fontFamily="serif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="Paramettres"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="@color/primary_text"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:elevation="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <LinearLayout
+                        android:background="@color/card_background"
+                        android:padding="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        >
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:maxHeight="@dimen/_80sdp"
+                            android:src="@drawable/baseline_home_filled_24"
+                            app:tint="@color/Accent"
+                            />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:fontFamily="serif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="Mes Statistique"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="@color/primary_text"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:elevation="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <LinearLayout
+                        android:background="@color/card_background"
+                        android:padding="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        >
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:maxHeight="@dimen/_80sdp"
+                            android:src="@drawable/baseline_home_filled_24"
+                            app:tint="@color/Accent"
+                            />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:fontFamily="serif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="Paramettres"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="@color/primary_text"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:elevation="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="@dimen/_10sdp">
+                    <LinearLayout
+                        android:background="@color/card_background"
+                        android:padding="@dimen/_4sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        >
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:maxHeight="@dimen/_80sdp"
+                            android:src="@drawable/baseline_home_filled_24"
+                            app:tint="@color/Accent"
+                            />
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:fontFamily="serif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="Mes Statistique"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="@color/primary_text"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>
