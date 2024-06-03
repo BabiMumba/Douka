@@ -17,6 +17,8 @@ class FavoriFragment : Fragment() {
     ): View {
         binding = FragmentFavoriBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
+
+
         return binding.root
     }
 

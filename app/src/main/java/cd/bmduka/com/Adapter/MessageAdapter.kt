@@ -7,7 +7,14 @@ import cd.babi.chatal.models.Message
 import cd.bmduka.com.databinding.ReceivedMessageItemBinding
 import cd.bmduka.com.databinding.SentMessageItemBinding
 
-class MessageAdapter(val liste_message:ArrayList<Message>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var messages = liste_message
+
+    fun updateMessages(newMessages: ArrayList<Message>) {
+        messages = newMessages
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return when (viewType){
