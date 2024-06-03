@@ -44,6 +44,7 @@
             android:name=".View.OnboardActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Base.Theme.Home"
             android:name=".MainActivity"
             android:exported="false" />
         <activity

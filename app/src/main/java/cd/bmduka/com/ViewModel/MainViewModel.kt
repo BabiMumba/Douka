@@ -9,17 +9,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import perfetto.protos.UiState
 
 class MainViewModel():ViewModel() {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val _banner = MutableLiveData<List<SliderModel>>()
     val banners: LiveData<List<SliderModel>> = _banner
-    private val _messages = MutableLiveData<ArrayList<Message>>()
-    val messages: LiveData<ArrayList<Message>> = _messages
+    val liste_message= MutableLiveData<ArrayList<Message>>()
+    val messages: MutableLiveData<ArrayList<Message>> = liste_message
 
-    private val _uiState = MutableLiveData<UiState>()
-    val uiState: LiveData<UiState> = _uiState
+    val liste = ArrayList<Message>()
 
 
     fun loadBanners(){
@@ -44,29 +42,14 @@ class MainViewModel():ViewModel() {
         })
     }
 
-
-    fun fetchMessages() {
-        _uiState.value = UiState.Loading
-        val liste = arrayListOf(
-            Message("bonjour", false),
-            Message("comment tu va", true),
-            Message("bien et toi", false)
-        )
-        _messages.value = liste
-        _uiState.value = UiState.Success
+    fun FetchMessage(){
+        liste.add(Message("bonjour",false))
+        liste.add(Message("comment tu va",true))
+        liste.add(Message("bien et toi",false))
+        liste_message.value = liste
     }
-
-    fun addMessage(msg: String) {
-        val updatedList = _messages.value ?: arrayListOf()
-        updatedList.add(Message(msg, true))
-        _messages.value = updatedList
+    fun addMessage(msg:String){
+        liste.add(Message(msg,true))
     }
-    sealed class UiState {
-        object Loading : UiState()
-        object Success : UiState()
-        data class Error(val message: String) : UiState()
-    }
-
-
 
 }

@@ -12,8 +12,9 @@
         android:icon="@drawable/baseline_favorite_24"/>
 
     <item
-        android:id="@+id/sale"
-        android:title="" />
+        android:id="@+id/shop"
+        android:icon="@drawable/baseline_store_24"
+        android:title="Boutique" />
     <item
         android:id="@+id/chat_fragment"
         android:title="Chat"

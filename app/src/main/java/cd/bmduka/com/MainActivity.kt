@@ -11,6 +11,7 @@ import cd.bmduka.com.Fragment.ChatFragment
 import cd.bmduka.com.Fragment.FavoriFragment
 import cd.bmduka.com.Fragment.HomeFragment
 import cd.bmduka.com.Fragment.ProfileFragment
+import cd.bmduka.com.Fragment.ShopFragment
 import cd.bmduka.com.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(2).isEnabled=false
+        /*binding.bottomNavigationView.background = null
+        binding.bottomNavigationView.menu.getItem(2).isEnabled=false*/
 
         binding.bottomNavigationView.selectedItemId = R.id.homeMenu
         loadFragment(HomeFragment())
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.chat_fragment -> {
                     loadFragment(ChatFragment())
+                    return@setOnItemSelectedListener true
+                }
+                R.id.shop -> {
+                    loadFragment(ShopFragment())
                     return@setOnItemSelectedListener true
                 }
 
