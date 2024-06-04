@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         /*binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(2).isEnabled=false*/
+        binding.bottomNavigationView.menu.getItem(2).iconTintList = */
 
         binding.bottomNavigationView.selectedItemId = R.id.homeMenu
         loadFragment(HomeFragment())
@@ -42,14 +42,11 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment())
                     return@setOnItemSelectedListener true
                 }
-                R.id.favoris_frg -> {
-                    loadFragment(FavoriFragment())
-                    return@setOnItemSelectedListener true
-                }
                 R.id.profileMenu -> {
                     loadFragment(ProfileFragment())
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.chat_fragment -> {
                     loadFragment(ChatFragment())
                     return@setOnItemSelectedListener true

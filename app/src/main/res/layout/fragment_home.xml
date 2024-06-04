@@ -148,7 +148,7 @@
                             android:id="@+id/search_camera"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/baseline_photo_camera_24"
+                            android:src="@drawable/baseline_favorite_24"
                             app:tint="@color/white"
                             android:layout_alignParentEnd="true"
                             android:layout_marginStart="@dimen/_10sdp"
