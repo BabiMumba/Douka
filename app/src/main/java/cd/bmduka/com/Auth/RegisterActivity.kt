@@ -30,12 +30,13 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.edtEmail.text.toString()
             val password = binding.password.text.toString()
             val date = Utils.getCurrentDate()
-            val uid = Utils.GetUserId()
             if(checkFields()){
                 Utils.isloading(binding.btnRegister,binding.progress,true)
                val createUser =Authentification.createUserWithEmail(email, password,  username)
                 createUser.addOnCompleteListener {
                     if(it.isSuccessful){
+                        val mail = it.result.user?.email.toString()
+                        val uid = Utils.getUID(mail)
                         val user = User(uid,username,email,password,date)
                         SaveUserToFirestore(user)
                     }else{

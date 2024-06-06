@@ -88,5 +88,18 @@ class MainViewModel():ViewModel() {
 
     }
 
+    fun loginwithmail(mail:String,password:String):Boolean{
+        auth.signInWithEmailAndPassword(mail,password)
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    return@addOnCompleteListener
+                }else{
+                    Log.d("TAG","login failed"+it.exception!!.message)
+                    return@addOnCompleteListener
+                    }
+            }
+        return false
+    }
+
 
 }

@@ -79,6 +79,7 @@
             app:passwordToggleEnabled="true"
             >
             <EditText
+
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:textColor="@color/primary_text"
@@ -98,19 +99,33 @@
             android:textColor="@color/primary_text"
             />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_marginTop="@dimen/_10sdp"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/Accent"
-            android:padding="@dimen/_10sdp"
-            android:text="Se connecter"
-            android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/poppins_bold"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:cornerRadius="@dimen/_10sdp"
-            />
+            >
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Accent"
+                android:padding="@dimen/_10sdp"
+                android:text="Creer un compte"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/_10sdp"
+                />
+        </RelativeLayout>
         <TextView
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"

@@ -48,9 +48,9 @@ object Utils {
         return Timestamp.now()
     }
 
-    fun GetUserId():String{
-        val FIREBASE_USER = FirebaseAuth.getInstance().currentUser
-        var id_vendeur = FIREBASE_USER!!.email?.substringBefore("@").toString()
+    fun getUID(mail:String):String{
+
+        var id_vendeur = mail.substringBefore("@").toString()
         //retirer les points et les caracteres speciaux
         for (i in id_vendeur.indices){
             if (id_vendeur[i] == '.' || id_vendeur[i] == '#' || id_vendeur[i] == '$' || id_vendeur[i] == '[' || id_vendeur[i] == ']'){
