@@ -1,17 +1,25 @@
 package cd.bmduka.com.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cd.babi.chatal.models.Message
 import cd.bmduka.com.Model.SliderModel
+import cd.bmduka.com.Model.User
+import cd.bmduka.com.Utils.Utils
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainViewModel():ViewModel() {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
+    val db = FirebaseFirestore.getInstance()
+    val auth = Firebase.auth
     private val _banner = MutableLiveData<List<SliderModel>>()
     val banners: LiveData<List<SliderModel>> = _banner
     val liste_message= MutableLiveData<ArrayList<Message>>()
@@ -51,5 +59,34 @@ class MainViewModel():ViewModel() {
     fun addMessage(msg:String){
         liste.add(Message(msg,true))
     }
+
+    fun CreateUser(mail:String,password:String,name:String){
+        auth.createUserWithEmailAndPassword(mail,password)
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    val uid = it.result.user!!.uid
+                    val date = Utils.getCurrentDate()
+                    val user = User(uid,name,mail,password,date)
+                    SaveUser(user)
+                }
+            }
+    }
+    fun SaveUser(user: User){
+        db.collection("users").document(user.uid).set(user)
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    Log.d("TAG","user saved")
+                }else{
+                    Log.d("TAG","user not saved"+it.exception!!.message)
+                }
+            }
+    }
+
+    fun logout(){
+        auth.signOut()
+
+
+    }
+
 
 }

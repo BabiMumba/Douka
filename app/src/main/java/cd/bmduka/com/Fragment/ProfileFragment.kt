@@ -1,16 +1,29 @@
 package cd.bmduka.com.Fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.SplashActivity
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
     lateinit var binding: FragmentProfileBinding
+    lateinit var mainViewModel: MainViewModel
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val activity = requireActivity()
+        mainViewModel = ViewModelProvider(activity)[MainViewModel::class.java]
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,6 +32,30 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.logout.setOnClickListener {
+            logout()
+        }
+    }
+
+    fun logout(){
+        val dialogue = AlertDialog.Builder(requireContext())
+        dialogue.setTitle("Deconnexion")
+        dialogue.setMessage("Voulez-vous vraiment vous deconnecter ?")
+        dialogue.setPositiveButton("Oui") { dialog, which ->
+            //deconnexion
+            mainViewModel.logout()
+            Utils.newIntent(requireActivity(),SplashActivity::class.java)
+            requireActivity().finish()
+        }
+        dialogue.setNegativeButton("Non") { dialog, which ->
+            //ne rien faire
+            dialog.dismiss()
+        }
+        dialogue.show()
+    }
+
 
 
 }
