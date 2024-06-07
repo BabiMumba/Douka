@@ -73,6 +73,9 @@
                   android:layout_height="wrap_content"
                   tools:itemCount="3"
                   tools:listitem="@layout/item_shop"
+                  android:id="@+id/shop_rec"
+                  app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                  android:orientation="vertical"
                   />
           </LinearLayout>
       </androidx.core.widget.NestedScrollView>
