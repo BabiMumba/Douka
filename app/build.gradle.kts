@@ -69,4 +69,6 @@ dependencies {
     //implementation ("com.google.firebase:firebase-ml-vision:24.0.3’")
     //implementation ("com.google.firebase:firebase-ml-vision-image-label-model:20.0.2")
 
+    implementation ("androidx.transition:transition:1.4.1")
+
 }

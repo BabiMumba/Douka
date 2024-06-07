@@ -13,10 +13,7 @@
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_height="0dp"
-        android:layout_above="@+id/appbar_btn">
-
-
-    </FrameLayout>
+        android:layout_above="@+id/appbar_btn"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/appbar_btn"

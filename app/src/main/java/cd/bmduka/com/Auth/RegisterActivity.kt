@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import cd.bmduka.com.MainActivity
 import cd.bmduka.com.Model.User
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivityRegisterBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -89,6 +91,7 @@ class RegisterActivity : AppCompatActivity() {
         db.collection("users").document(user.uid).set(user)
             .addOnCompleteListener {
                 if(it.isSuccessful){
+                    Utils.savename(this,user.name)
                     Utils.isloading(binding.btnRegister,binding.progress,false)
                     Utils.newIntentFinish(this, MainActivity::class.java)
                 }else{

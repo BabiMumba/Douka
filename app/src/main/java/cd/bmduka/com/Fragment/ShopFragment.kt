@@ -27,40 +27,32 @@ class ShopFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentShopBinding.inflate(layoutInflater)
-        getshop()
-
-
+        getliste()
         return binding.root
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun getshop(){
-        binding.shopRec.apply {
-            adapter = ShopAdapter(getliste())
-        }
-        binding.shopRec.adapter!!.notifyDataSetChanged()
-    }
-
-    fun getliste():ArrayList<Boutique>{
+    fun getliste() {
         val ref = firebaseDatabase.getReference("Boutique")
         val listes = ArrayList<Boutique>()
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (snap in snapshot.children){
+                listes.clear() // Assurez-vous de vider la liste avant de la remplir à nouveau
+                for (snap in snapshot.children) {
                     val boutique = snap.getValue(Boutique::class.java)
-                    if (boutique != null){
+                    if (boutique != null) {
                         listes.add(boutique)
-                        Log.d("boutique",boutique.toString())
+                        Log.d("boutique", boutique.toString())
                     }
                 }
-
+                binding.shopRec.adapter = ShopAdapter(listes)
+                binding.shopRec.adapter!!.notifyDataSetChanged()
             }
+
             override fun onCancelled(error: DatabaseError) {
                 Log.d("TAG", "onCancelled: ")
             }
-
         })
-        return listes
     }
 
 

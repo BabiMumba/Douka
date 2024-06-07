@@ -1,6 +1,8 @@
 package cd.bmduka.com.Fragment
 
 import android.app.AlertDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.SplashActivity
 import cd.bmduka.com.ViewModel.MainViewModel
@@ -32,11 +35,20 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mail = mainViewModel.GetmailUser()
+
+        binding.userMail.text = mail
         binding.logout.setOnClickListener {
             logout()
         }
+        val sharepref = context?.getSharedPreferences(DATA.PREF_NAME,Context.MODE_PRIVATE)
+        val name = sharepref!!.getString("name","")
+        binding.userName.text = name
+
+
     }
 
     fun logout(){

@@ -2,14 +2,19 @@ package cd.bmduka.com.Utils
 
 import android.content.Context
 import android.content.Intent
+import android.util.Base64
 import android.util.Patterns
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
+import javax.crypto.Cipher
+import javax.crypto.spec.SecretKeySpec
+import java.util.*
 
 object Utils {
     //show toast
@@ -49,7 +54,6 @@ object Utils {
     }
 
     fun getUID(mail:String):String{
-
         var id_vendeur = mail.substringBefore("@").toString()
         //retirer les points et les caracteres speciaux
         for (i in id_vendeur.indices){
@@ -60,4 +64,12 @@ object Utils {
 
         return id_vendeur
     }
+    fun savename(context: Context,name_user:String){
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("name",name_user)
+        editor.apply()
+    }
+
+
 }

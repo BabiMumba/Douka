@@ -10,3 +10,7 @@ data class User(
     val password: String,
     val DateInscription: Timestamp
 )
+{
+    constructor() : this("", "", "", "", Timestamp.now())
+
+}

@@ -42,6 +42,9 @@ class LoginActivity : AppCompatActivity() {
                     auth.signInWithEmailAndPassword(email,password)
                         .addOnCompleteListener {
                             if (it.isSuccessful){
+                                mainViewModel.GetUsername {name->
+                                    Utils.savename(this,name)
+                                }
                                 Utils.isloading(binding.btnLogin,binding.progress,false)
                                 Utils.newIntent(this,MainActivity::class.java)
                             }else{

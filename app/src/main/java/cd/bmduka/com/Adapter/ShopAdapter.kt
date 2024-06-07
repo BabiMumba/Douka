@@ -2,11 +2,14 @@ package cd.bmduka.com.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cd.bmduka.com.Model.Boutique
+import cd.bmduka.com.R
 import cd.bmduka.com.databinding.ItemShopBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
     RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
@@ -20,6 +23,7 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val boutique = liste_boutique[position]
+        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.bounce)
         holder.binding.apply {
             nomShp.text = boutique.nom_complet
             descripBoutique.text = boutique.description
@@ -29,5 +33,10 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
 
     override fun getItemCount(): Int {
         return liste_boutique.size
+    }
+
+    fun addItem(item: Boutique, position: Int) {
+        liste_boutique.add(position, item)
+        notifyItemInserted(position)
     }
 }
