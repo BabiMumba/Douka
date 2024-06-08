@@ -46,6 +46,10 @@ object Utils {
         }
 
     }
+    fun username(context: Context):String{
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences.getString("name","").toString()
+    }
     fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

@@ -34,8 +34,8 @@
             />
     </RelativeLayout>
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:id="@+id/profile_image"
@@ -60,13 +60,12 @@
             android:textColor="@color/primary_text"
             />
         <EditText
-            android:backgroundTint="@color/input_background"
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_input_new"
             android:hint="Ex: John Doe"
-            android:padding="@dimen/_12sdp"
+            android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:fontFamily="@font/poppins_regular"
             android:textColorHint="@color/grey"
@@ -74,7 +73,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             />
         <TextView
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
@@ -83,13 +82,13 @@
             android:textColor="@color/primary_text"
             />
         <EditText
-            android:backgroundTint="@color/input_background"
+            android:background="@drawable/background_input_new"
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ex: john@gmail.com"
-            android:padding="@dimen/_12sdp"
-            android:textSize="@dimen/_12ssp"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_10ssp"
             android:fontFamily="@font/poppins_regular"
             android:textColorHint="@color/grey"
             android:inputType="textEmailAddress"
@@ -97,21 +96,34 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:enabled="false"
             />
-        
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save"
-            android:layout_margin="@dimen/_5sdp"
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/Accent"
-            android:padding="@dimen/_10sdp"
-            android:text="Modififier"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:cornerRadius="@dimen/_10sdp"
-            />
+            >
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="true"
+                android:visibility="gone"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Accent"
+                android:padding="@dimen/_5sdp"
+                android:text="Enregistrer"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/_10sdp"
+                />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -83,6 +83,7 @@ class MainViewModel():ViewModel() {
                 if (it.isSuccessful) {
                     callback(true)
                 } else {
+                    Log.d("TAG", "update failed"+it.exception!!.message)
                     callback(false)
                 }
             }

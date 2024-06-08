@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.EditProfileActivity
 import cd.bmduka.com.View.SplashActivity
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentProfileBinding
@@ -48,6 +49,10 @@ class ProfileFragment : Fragment() {
         val name = sharepref!!.getString("name","")
         binding.userName.text = name
 
+        binding.edtProfileBtn.setOnClickListener {
+            Utils.newIntent(requireActivity(),EditProfileActivity::class.java)
+        }
+
 
     }
 
@@ -66,6 +71,12 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
         }
         dialogue.show()
+    }
+
+    override fun onResume() {
+        val name = Utils.username(requireContext())
+        binding.userName.text = name
+        super.onResume()
     }
 
 

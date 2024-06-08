@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cd.bmduka.com.Model.ItemChat
+import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.MessageActivity
 import cd.bmduka.com.databinding.ItemChatBinding
+import com.google.android.material.animation.AnimationUtils
 
 class ItemChatAdapter(val liste_message:ArrayList<ItemChat>):RecyclerView.Adapter<ItemChatAdapter.ViewHolder>() {
 
@@ -21,6 +23,12 @@ class ItemChatAdapter(val liste_message:ArrayList<ItemChat>):RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ItemChatAdapter.ViewHolder, position: Int) {
         val item = liste_message[position]
+
+        if (position%2==0){
+            holder.itemView.animation = android.view.animation.AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fisrt_item)
+        }else{
+            holder.itemView.animation = android.view.animation.AnimationUtils.loadAnimation(holder.itemView.context, R.anim.second_iten)
+        }
         holder.binding.userName.text = item.name
         holder.binding.lastMessage.text = item.lastMessage
         holder.itemView.setOnClickListener {

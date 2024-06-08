@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.DetailleShopActivity
 import cd.bmduka.com.databinding.ItemShopBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 
@@ -23,11 +25,14 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val boutique = liste_boutique[position]
-        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.bounce)
+        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.anim_shop)
         holder.binding.apply {
             nomShp.text = boutique.nom_complet
             descripBoutique.text = boutique.description
             member.text = "membre depuis ${boutique.date}"
+        }
+        holder.itemView.setOnClickListener {
+            Utils.newIntent(holder.itemView.context, DetailleShopActivity::class.java)
         }
     }
 

@@ -1,6 +1,7 @@
 package cd.bmduka.com.View
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,13 +24,22 @@ class EditProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val actualname = Utils.username(this)
+        binding.edtName.setText(actualname)
         binding.btnSave.setOnClickListener {
+            Utils.isloading(binding.btnSave,binding.progress,true)
             val name = binding.edtName.text.toString()
             mainViewModel.UpdateUsername(name){
                 if(it){
+                    Utils.showToast(this, "Mise à jour effectuée")
+                    Utils.isloading(binding.btnSave,binding.progress,false)
+                    Utils.savename(this,name)
                     onBackPressed()
                 }else {
+                    Utils.isloading(binding.btnSave,binding.progress,false)
                     Utils.showToast(this, "Erreur lors de la mise à jour")
+                    Log.d("EditProfileActivity", "Erreur lors de la mise à jour")
+
                 }
 
             }

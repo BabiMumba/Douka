@@ -1,6 +1,7 @@
 package cd.bmduka.com.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,10 @@ import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.SearchByImageActivity
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -115,20 +120,28 @@ class HomeFragment : Fragment() {
 
     fun initProduct(){
         val liste_product = ArrayList<Produit>()
-        liste_product.add(Produit("Produit A",20))
-        liste_product.add(Produit("Produit B",30))
-        liste_product.add(Produit("Produit C",40))
-        liste_product.add(Produit("Produit D",50))
-        liste_product.add(Produit("Produit E",60))
+        val ref = FirebaseDatabase.getInstance().getReference("Produits")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                liste_product.clear() // Assurez-vous de vider la liste avant de la remplir à nouveau
+                for (snap in snapshot.children) {
+                    val produit = snap.getValue(Produit::class.java)
+                    if (produit != null) {
+                        liste_product.add(produit)
+                    }
+                }
+                binding.recyclerProduct.apply {
+                    adapter = ProduitAdapter(liste_product)
+                    layoutManager = GridLayoutManager(requireContext(),2)
+                }
+                binding.recyclerProduct.adapter?.notifyDataSetChanged()
+            }
 
-        binding.recyclerProduct.apply {
-            adapter = ProduitAdapter(liste_product)
-            //afficher dans une grille
-            layoutManager = GridLayoutManager(requireContext(),2)
-            setHasFixedSize(true)
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("TAG", "onCancelled: ")
+            }
+        })
 
-        }
-        binding.recyclerProduct.adapter?.notifyDataSetChanged()
     }
 
 

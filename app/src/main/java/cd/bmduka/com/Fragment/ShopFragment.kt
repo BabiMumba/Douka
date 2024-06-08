@@ -32,6 +32,7 @@ class ShopFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
+    // Fonction pour récupérer la liste des boutiques depuis Firebase
     fun getliste() {
         val ref = firebaseDatabase.getReference("Boutique")
         val listes = ArrayList<Boutique>()

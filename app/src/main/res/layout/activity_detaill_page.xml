@@ -8,6 +8,13 @@
     android:layout_height="match_parent"
     android:background="@color/backgroud"
     tools:context=".View.DetaillPageActivity">
+    <include
+        android:id="@+id/loader_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/loader_page"
+        android:visibility="gone"
+        />
     <androidx.core.widget.NestedScrollView
         android:layout_alignParentTop="true"
         android:layout_above="@id/btn_interesser"
@@ -158,6 +165,7 @@
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/description"
                 />
 
 
