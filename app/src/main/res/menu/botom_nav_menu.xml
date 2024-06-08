@@ -13,7 +13,6 @@
         android:title="Boutique" />
     <item
         android:id="@+id/add_product"
-        android:icon="@drawable/round_add_circle_outline_24"
         android:title="" />
     <item
         android:id="@+id/chat_fragment"

@@ -55,6 +55,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/tabLayout"
         android:background="@color/primary"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white"
+        app:tabIndicatorColor="@color/white"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        android:layout_gravity="fill"
+
         />
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

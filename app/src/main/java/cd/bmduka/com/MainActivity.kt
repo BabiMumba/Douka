@@ -12,6 +12,8 @@ import cd.bmduka.com.Fragment.FavoriFragment
 import cd.bmduka.com.Fragment.HomeFragment
 import cd.bmduka.com.Fragment.ProfileFragment
 import cd.bmduka.com.Fragment.ShopFragment
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.AddProductActivity
 import cd.bmduka.com.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,13 +23,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(2).iconTintList = */
+        binding.bottomNavigationView.background = null
+        binding.bottomNavigationView.menu.getItem(2)
 
         binding.bottomNavigationView.selectedItemId = R.id.homeMenu
         loadFragment(HomeFragment())
         inifragment()
 
+        binding.addBtn.setOnClickListener {
+            Utils.newIntent(this, AddProductActivity::class.java)
+        }
     }
     fun loadFragment(fragment: Fragment){
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()

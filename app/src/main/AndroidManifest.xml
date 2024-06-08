@@ -25,6 +25,9 @@
             android:name=".View.DetailleShopActivity"
             android:exported="false" />
         <activity
+            android:name=".View.AddProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.EditProfileActivity"
             android:exported="false" />
         <activity

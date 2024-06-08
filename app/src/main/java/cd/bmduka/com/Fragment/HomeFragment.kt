@@ -130,9 +130,10 @@ class HomeFragment : Fragment() {
                         liste_product.add(produit)
                     }
                 }
+                val mylayoutManager = GridLayoutManager(requireContext(),2)
                 binding.recyclerProduct.apply {
                     adapter = ProduitAdapter(liste_product)
-                    layoutManager = GridLayoutManager(requireContext(),2)
+                    layoutManager = mylayoutManager
                 }
                 binding.recyclerProduct.adapter?.notifyDataSetChanged()
             }

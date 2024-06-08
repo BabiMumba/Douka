@@ -10,12 +10,14 @@ import cd.bmduka.com.Adapter.ViewPagerAdapter
 import cd.bmduka.com.Fragment.tabs.TabsHomeFragment
 import cd.bmduka.com.R
 import cd.bmduka.com.databinding.ActivityDetailleShopBinding
+import com.google.android.material.tabs.TabLayout
 
 class DetailleShopActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailleShopBinding
+    private var tabs: TabLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         binding = ActivityDetailleShopBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -23,11 +25,19 @@ class DetailleShopActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setupViewPager(binding.viewPager)
+        tabs = findViewById(R.id.tabLayout)
+        tabs!!.setupWithViewPager(binding.viewPager)
+
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
     }
     fun setupViewPager(viewpagershop: ViewPager) {
         val adapter = ViewPagerAdapter(this.supportFragmentManager)
         adapter.addFragment(TabsHomeFragment(), "Accueil")
-        adapter.addFragment(TabsHomeFragment(), "Produits")
+        adapter.addFragment(TabsHomeFragment(), "Produits flash")
         adapter.addFragment(TabsHomeFragment(), "Avis")
         viewpagershop.adapter = adapter
 
