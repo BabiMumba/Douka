@@ -40,8 +40,15 @@
               android:orientation="vertical"
               >
               <include
+                  android:id="@+id/msg_createbtq"
+                  layout="@layout/msg_createbtq"
+                  />
+              <include
+                  android:id="@+id/shop_own"
+                  android:visibility="gone"
                   layout="@layout/shop_own"
                   />
+
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"

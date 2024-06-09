@@ -113,7 +113,6 @@ class AddProductActivity : AppCompatActivity() {
             }else if (binding.tvCategorySelected.text.toString().isEmpty()){
                 Toast.makeText(this, "Veuillez choisir une catégorie", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-
             }
             else if ( imgList.isEmpty()) {
                 Toast.makeText(this, "Veuillez ajouter au moins une image", Toast.LENGTH_SHORT).show()
@@ -159,7 +158,6 @@ class AddProductActivity : AppCompatActivity() {
                                             binding.addProLoader.loaderFrameLayout.visibility = View.GONE
                                             Utils.showToast(this, "Produit ajouté avec succès")
                                             binding.btnAddProPublish.isEnabled = true
-
                                         }
                                         .addOnFailureListener { e ->
                                             binding.addProLoader.loaderFrameLayout.visibility = View.GONE

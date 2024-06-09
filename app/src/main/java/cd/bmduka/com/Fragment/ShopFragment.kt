@@ -11,6 +11,7 @@ import cd.bmduka.com.Adapter.ShopAdapter
 import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
+import cd.bmduka.com.View.AddShopFragment
 import cd.bmduka.com.databinding.FragmentShopBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,6 +29,15 @@ class ShopFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentShopBinding.inflate(layoutInflater)
         getliste()
+        binding.msgCreatebtq.createShopBtn.setOnClickListener {
+            // Ouvrir le fragment d'ajout de boutique
+            val fragment = AddShopFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+            transaction.replace(R.id.nav_fragment, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
         return binding.root
     }
 
@@ -38,7 +48,7 @@ class ShopFragment : Fragment() {
         val listes = ArrayList<Boutique>()
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                listes.clear() // Assurez-vous de vider la liste avant de la remplir à nouveau
+                listes.clear()
                 for (snap in snapshot.children) {
                     val boutique = snap.getValue(Boutique::class.java)
                     if (boutique != null) {
