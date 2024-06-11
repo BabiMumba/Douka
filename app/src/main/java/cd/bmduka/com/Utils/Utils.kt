@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import cd.bmduka.com.R
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -74,6 +76,22 @@ object Utils {
         editor.putString("name",name_user)
         editor.apply()
     }
+
+    fun loadfragemnt(context: Context,fragment: Fragment){
+        val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+        transaction.replace(R.id.nav_fragment, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    /*
+    val fragment = AddShopFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+            transaction.replace(R.id.nav_fragment, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+     */
 
 
 }

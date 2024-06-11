@@ -11,6 +11,7 @@ import cd.bmduka.com.Adapter.ShopAdapter
 import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.AddShopFragment
 import cd.bmduka.com.databinding.FragmentShopBinding
 import com.google.firebase.database.DataSnapshot
@@ -32,11 +33,7 @@ class ShopFragment : Fragment() {
         binding.msgCreatebtq.createShopBtn.setOnClickListener {
             // Ouvrir le fragment d'ajout de boutique
             val fragment = AddShopFragment()
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
-            transaction.replace(R.id.nav_fragment, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            Utils.loadfragemnt(requireActivity(),fragment)
         }
         return binding.root
     }

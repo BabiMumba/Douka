@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 
 class AddShopFragment : Fragment() {
     lateinit var binding: FragmentAddShopBinding
+    var lastid = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,13 +30,16 @@ class AddShopFragment : Fragment() {
         binding.back.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+        getLastId {
+            lastid = it
+        }
+
         binding.btnSave.setOnClickListener {
             if (checkFields()) {
                 // Récupérer l'id du dernier élément ajouté
-                getLastId { id ->
                     // Créer une boutique
                     val shop = Boutique(
-                        id+1,
+                        lastid + 1,
                         binding.shopName.text.toString(),
                         binding.edtDescription.text.toString(),
                         binding.edtAddress.text.toString(),
@@ -46,15 +50,10 @@ class AddShopFragment : Fragment() {
 
                         )
                     add_shop(shop)
-                }
             }else{
                 Utils.showToast(requireContext(), "Veuillez remplir tous les champs")
             }
         }
-
-
-
-
         return binding.root
     }
     fun add_shop(shop:Boutique){

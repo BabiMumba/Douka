@@ -49,6 +49,10 @@ class SliderAdapter(
         if (position == sliderItems.size - 1){
             viewpager.post(runnable)
         }
+        //si l'utilisateur clique sur l'image du slider
+        holder.image.setOnClickListener {
+
+        }
 
     }
 

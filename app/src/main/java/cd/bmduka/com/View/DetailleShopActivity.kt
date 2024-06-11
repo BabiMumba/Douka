@@ -25,6 +25,7 @@ class DetailleShopActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        applyTheme()
         setupViewPager(binding.viewPager)
         tabs = findViewById(R.id.tabLayout)
         tabs!!.setupWithViewPager(binding.viewPager)
@@ -40,6 +41,17 @@ class DetailleShopActivity : AppCompatActivity() {
         adapter.addFragment(TabsHomeFragment(), "Produits flash")
         adapter.addFragment(TabsHomeFragment(), "Avis")
         viewpagershop.adapter = adapter
+    }
 
+    //fonction pour appliquer la couleur du theme
+    fun applyTheme() {
+        val theme = intent.getStringExtra("theme")
+        //la couleur du theme est au format #0051FF
+        if (theme != null) {
+            binding.toolbar.setBackgroundColor(android.graphics.Color.parseColor(theme))
+            binding.tabLayout.setBackgroundColor(android.graphics.Color.parseColor(theme))
+            //status bar color
+            window.statusBarColor = android.graphics.Color.parseColor(theme)
+        }
     }
 }

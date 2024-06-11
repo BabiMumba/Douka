@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cd.bmduka.com.Model.Boutique
@@ -32,16 +33,33 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
             member.text = "membre depuis ${boutique.date}"
         }
         holder.itemView.setOnClickListener {
-            Utils.newIntent(holder.itemView.context, DetailleShopActivity::class.java)
+            handleBoutiqueClick(boutique, holder)
         }
     }
 
-    override fun getItemCount(): Int {
-        return liste_boutique.size
+    private fun handleBoutiqueClick(boutique: Boutique, holder: ViewHolder) {
+        val theme = boutique.getThemeColorOrDefault()
+        if (theme.isNotEmpty()) {
+            Utils.newIntentWithExtra(
+                holder.itemView.context,
+                DetailleShopActivity::class.java,
+                "theme",
+                theme
+            )
+        } else {
+            Utils.newIntentWithExtra(
+                holder.itemView.context,
+                DetailleShopActivity::class.java,
+                "theme",
+                "#ff4747"
+            )
+        }
     }
 
-    fun addItem(item: Boutique, position: Int) {
-        liste_boutique.add(position, item)
-        notifyItemInserted(position)
+    private fun Boutique.getThemeColorOrDefault(defaultValue: String = "") =
+        theme_color ?: defaultValue
+
+    override fun getItemCount(): Int {
+        return liste_boutique.size
     }
 }

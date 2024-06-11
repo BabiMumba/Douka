@@ -20,6 +20,7 @@ import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.homecategorie
 import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.AddShopFragment
 import cd.bmduka.com.View.SearchByImageActivity
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentHomeBinding
@@ -42,6 +43,10 @@ class HomeFragment : Fragment() {
         init_categories()
         initFilter()
         initProduct()
+        binding.searchLayout.setOnClickListener {
+            val fragment = SearchFragment()
+            Utils.loadfragemnt(requireActivity(),fragment)
+        }
         binding.searchCamera.setOnClickListener {
             Utils.newIntent(requireActivity(),SearchByImageActivity::class.java)
         }

@@ -14,4 +14,5 @@
     <string name="seen">vu</string>
     <string name="received_message">moi egalement</string>
     <string name="send_message_btn">message send descripttion</string>
+    <string name="search_placeholder_text">Recherche ici</string>
 </resources>

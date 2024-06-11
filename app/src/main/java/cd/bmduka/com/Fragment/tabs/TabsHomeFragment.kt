@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import cd.bmduka.com.Adapter.ProduitAdapter
 import cd.bmduka.com.Model.Produit
@@ -23,12 +24,18 @@ class TabsHomeFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       // binding.nestedScrollView.scrollTo(0, 0)//pour remonter en haut de la page
+        super.onViewCreated(view, savedInstanceState)
+        ViewCompat.setNestedScrollingEnabled(binding.nestedScrollView, false );
+        initProduct()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTabsHomeBinding.inflate(inflater, container, false)
-        initProduct()
         return binding.root
     }
     fun initProduct(){
@@ -47,6 +54,7 @@ class TabsHomeFragment : Fragment() {
                 binding.recyclerProduct.apply {
                     adapter = ProduitAdapter(liste_product)
                     layoutManager = mylayoutManager
+                    setHasFixedSize(true)
                 }
                 binding.recyclerProduct.adapter?.notifyDataSetChanged()
             }
