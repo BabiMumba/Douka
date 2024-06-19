@@ -116,6 +116,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_centerHorizontal="true"
                                 app:cornerRadius="@dimen/_5sdp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textColor="@color/white"
+                                android:textAllCaps="false"
                                 />
                         </RelativeLayout>
 

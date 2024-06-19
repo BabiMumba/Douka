@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="@dimen/_140sdp"
-    android:scaleType="fitCenter"
+    android:scaleType="centerCrop"
     android:adjustViewBounds="false"
     android:id="@+id/slider_image"
+    android:src="@drawable/cap2"
     >
 
 </ImageView>

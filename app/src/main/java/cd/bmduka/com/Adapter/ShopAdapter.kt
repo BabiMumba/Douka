@@ -12,6 +12,8 @@ import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.DetailleShopActivity
 import cd.bmduka.com.databinding.ItemShopBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
@@ -32,8 +34,22 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
             descripBoutique.text = boutique.description
             member.text = "membre depuis ${boutique.date}"
         }
+        val email = FirebaseAuth.getInstance().currentUser?.email
+        val id= Utils.getUID(email.toString())
         holder.itemView.setOnClickListener {
             handleBoutiqueClick(boutique, holder)
+        }
+        holder.binding.btnabonner.setOnClickListener {
+            //
+            FirebaseDatabase.getInstance().getReference("Abonner").child(boutique.id_boutique.toString()).child(id).setValue(true)
+                .addOnCompleteListener {
+                    if (it.isSuccessful){
+                        Toast.makeText(holder.itemView.context, "Vous êtes abonné à cette boutique", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(holder.itemView.context, "Erreur lors de l'abonnement", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
         }
     }
 

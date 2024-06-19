@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:id="@+id/viewpager"
-                android:padding="@dimen/_10sdp"
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/grey_bg"
                 />
@@ -168,6 +168,20 @@
                 android:id="@+id/description"
                 />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey"
+                />
+
+            <include
+                android:layout_marginTop="@dimen/_10sdp"
+                layout="@layout/custom_vendeur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/vendeur_layout"
+                />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -181,7 +195,7 @@
         android:textStyle="bold"
         android:textAllCaps="false"
         android:backgroundTint="@color/primary"
-        app:cornerRadius="@dimen/_10sdp"
+        app:cornerRadius="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         />

@@ -33,12 +33,15 @@ class DetailleShopActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }
+        //le tabs n2 est selectionné par defaut
+        tabs!!.getTabAt(1)!!.select()//permet de selectionner un tab par defaut
+
 
     }
     fun setupViewPager(viewpagershop: ViewPager) {
         val adapter = ViewPagerAdapter(this.supportFragmentManager)
+        adapter.addFragment(TabsHomeFragment(), "Info")
         adapter.addFragment(TabsHomeFragment(), "Accueil")
-        adapter.addFragment(TabsHomeFragment(), "Produits flash")
         adapter.addFragment(TabsHomeFragment(), "Avis")
         viewpagershop.adapter = adapter
     }

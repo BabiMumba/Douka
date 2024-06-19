@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:elevation="@dimen/_8ssp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:padding="@dimen/_5sdp"
+        android:background="@color/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/baseline_person_24"
+            android:id="@+id/rc_image_view"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="@dimen/_2sdp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Babi Mumba"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_toEndOf="@id/rc_image_view"
+            android:id="@+id/rc_name"
+            />
+        <RatingBar
+            android:id="@+id/rating_pd"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:progressTint="@color/primary"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:rating="4"
+            android:secondaryProgressTint="@color/black"
+            android:layout_below="@id/rc_name"
+            android:layout_toEndOf="@id/rc_image_view"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:cornerRadius="@dimen/_5sdp"
+            android:text="S'abonner"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:id="@+id/view_seller"
+            />
+        <LinearLayout
+            android:id="@+id/rc_profil_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rc_image_view"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:src="@drawable/outline_person_24"
+                app:tint="@color/primary" />
+            <TextView
+                android:layout_marginStart="@dimen/_5sdp"
+                android:id="@+id/rc_date_arrive"
+                android:textColor="@color/primary_text"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="membre depuis"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rc_annonces_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rc_profil_layout"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginStart="@dimen/_2sdp"
+                android:id="@+id/txt_annonces"
+                android:textColor="@color/primary_text"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+            <TextView
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@color/primary_text"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Annonces"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rc_localisation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rc_annonces_layout"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_location_pin_24"
+                app:tint="@color/primary"
+                />
+            <TextView
+                android:layout_marginStart="@dimen/_5sdp"
+                android:id="@+id/txt_localisation"
+                android:textColor="@color/primary_text"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lubumbashi"
+                />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</com.google.android.material.card.MaterialCardView>
