@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cd.bmduka.com.Model.Boutique
-import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentAddShopBinding
@@ -18,8 +17,7 @@ import com.google.firebase.database.ValueEventListener
 
 class AddShopFragment : Fragment() {
     lateinit var binding: FragmentAddShopBinding
-    var lastid = ""
-    var lastIdBtque=0
+    var lastid = 0
     //maiviewmodel
     val viewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +37,15 @@ class AddShopFragment : Fragment() {
             lastid = it
         }
 
-
-
         val mail_user = viewModel.GetmailUser()
         val id_prop = Utils.getUID(mail_user)
 
-        val id_boutique = id_prop + lastIdBtque
+
 
 
         binding.btnSave.setOnClickListener {
             if (checkFields()) {
+                val id_boutique = id_prop+ lastid
                     val shop = Boutique(
                         id_boutique,
                         binding.shopName.text.toString(),
@@ -105,7 +102,7 @@ class AddShopFragment : Fragment() {
         return true
     }
 
-    fun getLastId(callback: (String) -> Unit) {
+    fun getLastId(callback: (Int) -> Unit) {
         val ref = FirebaseDatabase.getInstance().getReference("Boutique")
         val liste_elements = ArrayList<Boutique>()
         ref.addValueEventListener(object : ValueEventListener {
@@ -114,10 +111,19 @@ class AddShopFragment : Fragment() {
                     val boutique = snap.getValue(Boutique::class.java)
                     if (boutique != null) {
                         liste_elements.add(boutique)
+                    }else{
+                        callback(0)
                     }
                 }
-                val id = liste_elements[liste_elements.size - 1].id_boutique
-                callback(id)
+                /*val id = liste_elements[liste_elements.size - 1].id_boutique
+                callback(id)*/
+                //si la liste contient des elements on recupere le dernier id
+                lastid = if (liste_elements.size > 0) {
+                    liste_elements.size+1
+                } else {
+                    0
+                }
+
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.d("TAG", "onCancelled: ")

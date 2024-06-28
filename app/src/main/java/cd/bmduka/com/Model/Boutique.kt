@@ -1,9 +1,7 @@
 package cd.bmduka.com.Model
 
-import com.google.firebase.Timestamp
-
 data class Boutique(
-    var id_boutique:String="",
+    var id_boutique: String ="",
     val nom_complet: String="",
     val description: String="",
     val adresse: String="",
