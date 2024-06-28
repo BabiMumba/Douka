@@ -69,6 +69,17 @@ object Utils {
         editor.putString("name",name_user)
         editor.apply()
     }
+    fun IsVendeur(context: Context):Boolean{
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isVendeur",false)
+    }
+
+    fun saveVendeur(context: Context,isVendeur:Boolean){
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isVendeur",isVendeur)
+        editor.apply()
+    }
 
     fun loadfragemnt(context: Context,fragment: Fragment){
         val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
@@ -77,14 +88,13 @@ object Utils {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-    /*
-    val fragment = AddShopFragment()
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
-            transaction.replace(R.id.nav_fragment, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-     */
+
+    fun CustomToast(context: Context, message: String){
+        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        val view = toast.view
+        view!!.setBackgroundResource(R.drawable.toast_background)
+        toast.show()
+    }
 
 
 }

@@ -45,7 +45,7 @@ class AddShopFragment : Fragment() {
 
         binding.btnSave.setOnClickListener {
             if (checkFields()) {
-                val id_boutique = id_prop+ lastid
+                val id_boutique = "$id_prop-$lastid"
                     val shop = Boutique(
                         id_boutique,
                         binding.shopName.text.toString(),
@@ -55,11 +55,10 @@ class AddShopFragment : Fragment() {
                         id_prop,
                         "1",
                         "05/05/2020",
-
                         )
                     add_shop(shop)
             }else{
-                Utils.showToast(requireContext(), "Veuillez remplir tous les champs")
+                Utils.CustomToast(requireContext(), "Veuillez remplir tous les champs")
             }
         }
         return binding.root
@@ -75,6 +74,8 @@ class AddShopFragment : Fragment() {
                     Utils.isloading(binding.btnSave,binding.progress,false)
                     // Si l'ajout est réussi
                     Utils.showToast(requireContext(), "Boutique ajoutée avec succès")
+                    requireActivity().onBackPressed()
+                    Utils.saveVendeur(requireContext(),true)
                 }else{
                     Utils.isloading(binding.btnSave,binding.progress,false)
                     Utils.showToast(requireContext(), "Erreur: ${it.exception?.message}")

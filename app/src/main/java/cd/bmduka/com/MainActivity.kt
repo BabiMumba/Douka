@@ -30,8 +30,13 @@ class MainActivity : AppCompatActivity() {
         loadFragment(HomeFragment())
         inifragment()
 
+        val isSeller = Utils.IsVendeur(this)
         binding.addBtn.setOnClickListener {
-            Utils.newIntent(this, AddProductActivity::class.java)
+            if (isSeller){
+                Utils.newIntent(this, AddProductActivity::class.java)
+            }else{
+                Utils.showToast(this, "Créez une boutique pour ajouter un produit")
+            }
         }
     }
     fun loadFragment(fragment: Fragment){

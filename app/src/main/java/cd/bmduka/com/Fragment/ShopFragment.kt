@@ -13,6 +13,7 @@ import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.AddShopFragment
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentShopBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,6 +24,7 @@ class ShopFragment : Fragment() {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
 
     lateinit var binding:FragmentShopBinding
+    val viewModel = MainViewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +37,8 @@ class ShopFragment : Fragment() {
             val fragment = AddShopFragment()
             Utils.loadfragemnt(requireActivity(),fragment)
         }
+        Panel()
+        btque()
         return binding.root
     }
 
@@ -61,6 +65,30 @@ class ShopFragment : Fragment() {
                 Log.d("TAG", "onCancelled: ")
             }
         })
+    }
+
+    fun Panel(){
+        val isSeller= Utils.IsVendeur(requireActivity())
+        if (isSeller) {
+            binding.msgCreatebtq.root.visibility = View.GONE
+            binding.shopOwn.root.visibility = View.VISIBLE
+        }else{
+            binding.msgCreatebtq.root.visibility = View.VISIBLE
+            binding.shopOwn.root.visibility = View.GONE
+        }
+    }
+
+    fun btque(){
+        val ui= Utils.getUID(viewModel.GetmailUser())
+       viewModel.fetchBoutique(ui){btq->
+           Utils.showToast(requireContext(),btq.nom_complet)
+       }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        Panel()
     }
 
 

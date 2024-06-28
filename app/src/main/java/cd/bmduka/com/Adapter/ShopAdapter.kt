@@ -40,15 +40,18 @@ class ShopAdapter(val liste_boutique: ArrayList<Boutique>) :
             handleBoutiqueClick(boutique, holder)
         }
         holder.binding.btnabonner.setOnClickListener {
-            //
-            FirebaseDatabase.getInstance().getReference("Abonner").child(boutique.id_boutique.toString()).child(id).setValue(true)
+            val context = holder.itemView.context
+           // Utils.CustomToast(context,"Vous êtes abonné à cette boutique")
+        /*    val context = holder.itemView.context
+            FirebaseDatabase.getInstance().getReference("Abonner").child(boutique.id_boutique).child(id).setValue(true)
                 .addOnCompleteListener {
                     if (it.isSuccessful){
-                        Toast.makeText(holder.itemView.context, "Vous êtes abonné à cette boutique", Toast.LENGTH_SHORT).show()
+                        Utils.CustomToast(context,"Vous êtes abonné à cette boutique")
+                      //  Toast.makeText(holder.itemView.context, "Vous êtes abonné à cette boutique", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(holder.itemView.context, "Erreur lors de l'abonnement", Toast.LENGTH_SHORT).show()
                     }
-                }
+                }*/
 
         }
     }

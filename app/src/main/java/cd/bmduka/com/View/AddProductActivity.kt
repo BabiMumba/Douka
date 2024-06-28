@@ -87,12 +87,6 @@ class AddProductActivity : AppCompatActivity() {
             } else {
                 getImages.launch("image/*")
             }
-
-            //if (!checkPermission()) {
-            //                requestPermission()
-            //            } else {
-            //                sign_in()
-            //            }
         }
         binding.etatBtn.setOnClickListener {
             showStateDialog()
@@ -137,7 +131,6 @@ class AddProductActivity : AppCompatActivity() {
                                 val id_product = databaseRef.push().key.toString()
                                 // Vérifier si toutes les images ont été téléchargées
                                 if (imagesList.size == imgList.size) {
-                                    //
                                     // Toutes les images ont été téléchargées, enregistrer les informations sur Firebase Database
                                     val produit = Produit(
                                         binding.edtName.text.toString(),

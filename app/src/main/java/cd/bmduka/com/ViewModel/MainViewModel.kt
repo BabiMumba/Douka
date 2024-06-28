@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cd.babi.chatal.models.Message
+import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.User
 import cd.bmduka.com.Utils.Utils
@@ -120,6 +121,30 @@ class MainViewModel():ViewModel() {
                     Log.d("TAG","user not saved"+it.exception!!.message)
                 }
             }
+    }
+
+    fun fetchBoutique(id_admin:String,callback: (Boutique) -> Unit){
+        val ref = firebaseDatabase.getReference("Boutique")
+        ref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (snap in snapshot.children){
+                    val boutique = snap.getValue(Boutique::class.java)
+                    if (boutique != null){
+                        if (boutique.id_admin==id_admin){
+                            callback(boutique)
+                            break
+                        }
+                    }
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("tag","fetchboutique")
+            }
+        })
+
     }
 
     fun logout(){
