@@ -3,7 +3,7 @@ package cd.bmduka.com.Model
 import com.google.firebase.Timestamp
 
 data class Boutique(
-    var id_boutique:Int=0,
+    var id_boutique:String="",
     val nom_complet: String="",
     val description: String="",
     val adresse: String="",
@@ -13,6 +13,6 @@ data class Boutique(
     val date: String,
     val theme_color: String="#ff4747",
 ){
-    constructor():this(0,"","","","", "", "", "", "")
+    constructor():this("","","","","", "", "", "", "")
 
 }

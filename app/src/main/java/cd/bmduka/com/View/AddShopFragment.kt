@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentAddShopBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,9 +18,13 @@ import com.google.firebase.database.ValueEventListener
 
 class AddShopFragment : Fragment() {
     lateinit var binding: FragmentAddShopBinding
-    var lastid = 0
+    var lastid = ""
+    var lastIdBtque=0
+    //maiviewmodel
+    val viewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -34,17 +39,23 @@ class AddShopFragment : Fragment() {
             lastid = it
         }
 
+
+
+        val mail_user = viewModel.GetmailUser()
+        val id_prop = Utils.getUID(mail_user)
+
+        val id_boutique = id_prop + lastIdBtque
+
+
         binding.btnSave.setOnClickListener {
             if (checkFields()) {
-                // Récupérer l'id du dernier élément ajouté
-                    // Créer une boutique
                     val shop = Boutique(
-                        lastid + 1,
+                        id_boutique,
                         binding.shopName.text.toString(),
                         binding.edtDescription.text.toString(),
                         binding.edtAddress.text.toString(),
                         binding.edtPhone.text.toString(),
-                        "0",
+                        id_prop,
                         "1",
                         "05/05/2020",
 
@@ -94,7 +105,7 @@ class AddShopFragment : Fragment() {
         return true
     }
 
-    fun getLastId(callback: (Int) -> Unit) {
+    fun getLastId(callback: (String) -> Unit) {
         val ref = FirebaseDatabase.getInstance().getReference("Boutique")
         val liste_elements = ArrayList<Boutique>()
         ref.addValueEventListener(object : ValueEventListener {

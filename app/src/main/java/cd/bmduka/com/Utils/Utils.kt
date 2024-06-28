@@ -2,21 +2,14 @@ package cd.bmduka.com.Utils
 
 import android.content.Context
 import android.content.Intent
-import android.util.Base64
 import android.util.Patterns
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cd.bmduka.com.R
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
-import java.util.Calendar
-import javax.crypto.Cipher
-import javax.crypto.spec.SecretKeySpec
-import java.util.*
 
 object Utils {
     //show toast
@@ -60,15 +53,15 @@ object Utils {
     }
 
     fun getUID(mail:String):String{
-        var id_vendeur = mail.substringBefore("@").toString()
+        var id_user = mail.substringBefore("@").toString()
         //retirer les points et les caracteres speciaux
-        for (i in id_vendeur.indices){
-            if (id_vendeur[i] == '.' || id_vendeur[i] == '#' || id_vendeur[i] == '$' || id_vendeur[i] == '[' || id_vendeur[i] == ']'){
-                id_vendeur = id_vendeur.replace(id_vendeur[i].toString(),"")
+        for (i in id_user.indices){
+            if (id_user[i] == '.' || id_user[i] == '#' || id_user[i] == '$' || id_user[i] == '[' || id_user[i] == ']'){
+                id_user = id_user.replace(id_user[i].toString(),"")
             }
         }
 
-        return id_vendeur
+        return id_user
     }
     fun savename(context: Context,name_user:String){
         val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
