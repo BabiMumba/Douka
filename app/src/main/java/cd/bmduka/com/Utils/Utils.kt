@@ -55,9 +55,9 @@ object Utils {
     }
     fun isloadingFrame(frame:View, isLoading: Boolean) {
         if (isLoading) {
-            frame.visibility = View.GONE
-        } else {
             frame.visibility = View.VISIBLE
+        } else {
+            frame.visibility = View.GONE
         }
 
     }

@@ -173,7 +173,6 @@ class MyMapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener
     }
     fun add_shop(shop: Boutique){
         Utils.isloadingFrame(binding.loaderFrameLayout.loaderFrameLayout,true)
-        // Ajouter une boutique dans la base de données
         val ref = FirebaseDatabase.getInstance().getReference("Boutique")
         val id = ref.push().key.toString()
         ref.child(id).setValue(shop)

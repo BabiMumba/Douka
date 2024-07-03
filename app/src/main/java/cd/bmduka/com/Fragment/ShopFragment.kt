@@ -81,7 +81,7 @@ class ShopFragment : Fragment() {
     fun btque(){
         val ui= Utils.getUID(viewModel.GetmailUser())
        viewModel.fetchBoutique(ui){btq->
-           Utils.showToast(requireContext(),btq.nom_complet)
+          Log.d("btqur_id",btq.id_admin)
        }
     }
 

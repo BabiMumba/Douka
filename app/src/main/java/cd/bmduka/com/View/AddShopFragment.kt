@@ -41,11 +41,6 @@ class AddShopFragment : Fragment() {
         val mail_user = viewModel.GetmailUser()
         val id_prop = Utils.getUID(mail_user)
 
-
-        binding.location.setOnClickListener {
-            Utils.newIntentWithExtra(requireContext(), MyMapsActivity::class.java, "id_prop", id_prop,"id_boutique", "$id_prop-$lastid")
-        }
-
         binding.btnSave.setOnClickListener {
 
             if (checkFields()) {

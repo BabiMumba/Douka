@@ -1,6 +1,7 @@
 package cd.bmduka.com
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,9 +16,12 @@ import cd.bmduka.com.Fragment.ShopFragment
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.AddProductActivity
 import cd.bmduka.com.databinding.ActivityMainBinding
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var binding: ActivityMainBinding
+    private lateinit var locationUtils: Utils.LocationUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,6 +42,13 @@ class MainActivity : AppCompatActivity() {
                 Utils.showToast(this, "Créez une boutique pour ajouter un produit")
             }
         }
+
+        locationUtils = Utils.LocationUtils(this)
+        locationUtils.getCurrentLocation { latitude, longitude ->
+            // Utilisez les coordonnées ici, par exemple pour les afficher sur la carte
+            Log.d("MyMapsActivity", "Latitude: $latitude, Longitude: $longitude")
+        }
+
     }
     fun loadFragment(fragment: Fragment){
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -79,6 +90,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         checkIseller()
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        TODO("Not yet implemented")
     }
 
 

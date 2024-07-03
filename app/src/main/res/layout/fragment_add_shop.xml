@@ -137,10 +137,6 @@
                     android:textColor="@color/primary_text"
                     />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
                     <EditText
                         android:background="@drawable/background_input_new"
                         android:id="@+id/edt_address"
@@ -154,20 +150,7 @@
                         android:inputType="textMultiLine"
                         android:textColor="@color/primary_text"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toStartOf="@id/location"
                         />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/baseline_my_location_24"
-                        android:layout_alignParentEnd="true"
-                        android:padding="@dimen/_5sdp"
-                        android:id="@+id/location"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/Accent"
-                        />
-
-                </RelativeLayout>
                 <TextView
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_width="match_parent"
