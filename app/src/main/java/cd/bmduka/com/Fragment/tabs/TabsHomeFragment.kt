@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import cd.bmduka.com.Adapter.ProduitAdapter
 import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.FragmentTabsHomeBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +37,9 @@ class TabsHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTabsHomeBinding.inflate(inflater, container, false)
+        val id_btq = arguments?.getString("id_btq").toString()
+
+        Utils.showToast(requireActivity(),id_btq)
         return binding.root
     }
     fun initProduct(){

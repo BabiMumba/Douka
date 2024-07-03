@@ -32,12 +32,12 @@ class ShopFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentShopBinding.inflate(layoutInflater)
         getliste()
+        Panel()
         binding.msgCreatebtq.createShopBtn.setOnClickListener {
             // Ouvrir le fragment d'ajout de boutique
             val fragment = AddShopFragment()
             Utils.loadfragemnt(requireActivity(),fragment)
         }
-        Panel()
         btque()
         return binding.root
     }

@@ -27,11 +27,10 @@ object Authentification {
             }
         }
     }
-    fun signInWithGoogle(idToken: String): Task<AuthResult> {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        return auth.signInWithCredential(credential)
-    }
-    fun loginWithEmail(email: String, password: String): Task<AuthResult> {
-        return auth.signInWithEmailAndPassword(email, password)
+
+    //authentification anonyme avec firebase anonymous
+    fun signInAnonymously(): Task<AuthResult> {
+        //elle retourne une tache de type AuthResult
+        return auth.signInAnonymously()
     }
 }

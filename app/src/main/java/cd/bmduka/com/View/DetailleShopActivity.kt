@@ -39,6 +39,10 @@ class DetailleShopActivity : AppCompatActivity() {
 
     }
     fun setupViewPager(viewpagershop: ViewPager) {
+        val tabsHomeFragment = TabsHomeFragment()
+        tabsHomeFragment.arguments = Bundle().apply {
+            putString("id_btq", intent.getStringExtra("id_btq"))
+        }
         val adapter = ViewPagerAdapter(this.supportFragmentManager)
         adapter.addFragment(TabsHomeFragment(), "Info")
         adapter.addFragment(TabsHomeFragment(), "Accueil")

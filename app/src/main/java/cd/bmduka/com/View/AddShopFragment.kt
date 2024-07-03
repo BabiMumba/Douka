@@ -1,5 +1,7 @@
 package cd.bmduka.com.View
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cd.bmduka.com.Model.Boutique
+import cd.bmduka.com.Model.Coordonne
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentAddShopBinding
@@ -20,10 +23,8 @@ class AddShopFragment : Fragment() {
     var lastid = 0
     //maiviewmodel
     val viewModel = MainViewModel()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    var latitud = 0.0
+    var longitud = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,48 +42,54 @@ class AddShopFragment : Fragment() {
         val id_prop = Utils.getUID(mail_user)
 
 
-
+        binding.location.setOnClickListener {
+            Utils.newIntentWithExtra(requireContext(), MyMapsActivity::class.java, "id_prop", id_prop,"id_boutique", "$id_prop-$lastid")
+        }
 
         binding.btnSave.setOnClickListener {
+
             if (checkFields()) {
+                val adresse = binding.edtAddress.text.toString()
+                //verifier si les coordonnees sont vides
+                val coordonne =Coordonne(latitud, longitud,adresse)
                 val id_boutique = "$id_prop-$lastid"
-                    val shop = Boutique(
-                        id_boutique,
-                        binding.shopName.text.toString(),
-                        binding.edtDescription.text.toString(),
-                        binding.edtAddress.text.toString(),
-                        binding.edtPhone.text.toString(),
-                        id_prop,
-                        "1",
-                        "05/05/2020",
+                val datetm = Utils.getCurrentDate()
+                val datejour = Utils.formatDate(datetm)
+                checkIfShopExists(id_prop) { exists ->
+                    if (!exists) {
+                        val shop = Boutique(
+                            id_boutique,
+                            binding.shopName.text.toString(),
+                            binding.edtDescription.text.toString(),
+                            binding.edtPhone.text.toString(),
+                            id_prop,
+                            "1",
+                            datejour,
+                            "#ff4747",
+                            coordonne
                         )
-                    add_shop(shop)
-            }else{
-                Utils.CustomToast(requireContext(), "Veuillez remplir tous les champs")
+                        //prendre le shop pour aller a la page suivante
+                        val intent = Intent(requireContext(), MyMapsActivity::class.java)
+                        intent.putExtra("id_boutique", shop.id_boutique)
+                        intent.putExtra("nom_complet", shop.nom_complet)
+                        intent.putExtra("description", shop.description)
+                        intent.putExtra("nume_appel", shop.nume_appel)
+                        intent.putExtra("id_admin", shop.id_admin)
+                        intent.putExtra("logo_btq", shop.logo_btq)
+                        intent.putExtra("date", shop.date)
+                        intent.putExtra("theme_color", shop.theme_color)
+                        intent.putExtra("adresse", adresse)
+                        startActivity(intent)
+                    } else {
+                        Utils.showToast(requireContext(), "Une boutique avec cet ID utilisateur existe déjà")
+                    }
+                }
             }
         }
+
         return binding.root
     }
-    fun add_shop(shop:Boutique){
-        Utils.isloading(binding.btnSave,binding.progress,true)
-        // Ajouter une boutique dans la base de données
-        val ref = FirebaseDatabase.getInstance().getReference("Boutique")
-        val id = ref.push().key.toString()
-        ref.child(id).setValue(shop)
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    Utils.isloading(binding.btnSave,binding.progress,false)
-                    // Si l'ajout est réussi
-                    Utils.showToast(requireContext(), "Boutique ajoutée avec succès")
-                    requireActivity().onBackPressed()
-                    Utils.saveVendeur(requireContext(),true)
-                }else{
-                    Utils.isloading(binding.btnSave,binding.progress,false)
-                    Utils.showToast(requireContext(), "Erreur: ${it.exception?.message}")
-                }
 
-            }
-    }
     private fun checkFields(): Boolean {
         if (binding.shopName.text.toString().isEmpty()) {
             binding.shopName.error = "Nom de la boutique est requis"
@@ -101,6 +108,18 @@ class AddShopFragment : Fragment() {
             return false
         }
         return true
+    }
+    fun checkIfShopExists(userId: String, callback: (Boolean) -> Unit) {
+        val ref = FirebaseDatabase.getInstance().getReference("Boutique")
+        ref.orderByChild("id_prop").equalTo(userId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                callback(snapshot.exists())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("TAG", "onCancelled: ${error.message}")
+            }
+        })
     }
 
     fun getLastId(callback: (Int) -> Unit) {

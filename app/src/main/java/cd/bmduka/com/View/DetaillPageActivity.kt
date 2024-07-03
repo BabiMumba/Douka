@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cd.bmduka.com.Adapter.ProduitAdapter
@@ -15,6 +16,11 @@ import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
 import cd.bmduka.com.databinding.ActivityDetaillPageBinding
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -36,6 +42,29 @@ class DetaillPageActivity : AppCompatActivity() {
 
         binding.back.setOnClickListener {
             onBackPressed()
+        }
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fgm) as SupportMapFragment
+
+        // Charger la carte de manière asynchrone
+        mapFragment.getMapAsync { googleMap ->
+            // Ajouter les marqueurs sur la carte
+            val latLng1 = LatLng(-11.671828362588464, 27.480711936950684)
+           // val latLng2 = LatLng(latitude2, longitude2)
+            googleMap.addMarker(MarkerOptions().position(latLng1))
+           // googleMap.addMarker(MarkerOptions().position(latLng2))
+
+            // Définir les limites de la caméra pour inclure les deux points
+            val bounds = LatLngBounds.Builder()
+                .include(latLng1)
+                //.include(latLng2)
+                .build()
+            //googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50))//50 est
+            googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng1))
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 20f))
+
+            // Rendre le fragment de carte visible
+            mapFragment.view?.visibility = View.VISIBLE
+
         }
 
     }

@@ -15,6 +15,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Locale.setDefault(Locale("fr"))
+        //theme pour le systeme
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }

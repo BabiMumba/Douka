@@ -9,6 +9,21 @@
     android:background="@color/backgroud"
     tools:context=".View.OnboardActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mode Invité"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/primary_text"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/tv_invited"
+        />
+
+
     <LinearLayout
         android:layout_marginBottom="@dimen/_10sdp"
         android:id="@+id/line1"

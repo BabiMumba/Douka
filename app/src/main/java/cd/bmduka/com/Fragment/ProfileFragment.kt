@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.View.AddShopFragment
 import cd.bmduka.com.View.EditProfileActivity
 import cd.bmduka.com.View.SplashActivity
 import cd.bmduka.com.ViewModel.MainViewModel
@@ -45,6 +46,11 @@ class ProfileFragment : Fragment() {
         binding.logout.setOnClickListener {
             logout()
         }
+        binding.managerShop.setOnClickListener {
+            // Ouvrir le fragment d'ajout de boutique
+            val fragment = AddShopFragment()
+            Utils.loadfragemnt(requireActivity(),fragment)
+        }
         val sharepref = context?.getSharedPreferences(DATA.PREF_NAME,Context.MODE_PRIVATE)
         val name = sharepref!!.getString("name","")
         binding.userName.text = name
@@ -62,7 +68,7 @@ class ProfileFragment : Fragment() {
         dialogue.setMessage("Voulez-vous vraiment vous deconnecter ?")
         dialogue.setPositiveButton("Oui") { dialog, which ->
             //deconnexion
-            mainViewModel.logout()
+            mainViewModel.logout(requireActivity())
             Utils.newIntent(requireActivity(),SplashActivity::class.java)
             requireActivity().finish()
         }

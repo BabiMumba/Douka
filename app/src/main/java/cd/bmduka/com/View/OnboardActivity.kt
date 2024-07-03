@@ -5,8 +5,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cd.bmduka.com.Auth.Authentification
 import cd.bmduka.com.Auth.LoginActivity
 import cd.bmduka.com.Auth.RegisterActivity
+import cd.bmduka.com.Model.User
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.databinding.ActivityOnboardBinding
@@ -33,6 +35,21 @@ class OnboardActivity : AppCompatActivity() {
         }
         binding.btnLogin.setOnClickListener {
             Utils.newIntent(this, LoginActivity::class.java)
+        }
+        binding.tvInvited.setOnClickListener {
+            Authentification.signInAnonymously().addOnCompleteListener {
+                if(it.isSuccessful){
+                    val username = "Anonyme"
+                    val email = "Anonyme@gmail.com"
+                    val password = "Anonyme"
+                    val date = Utils.getCurrentDate()
+                    val uid = it.result?.user?.uid.toString()
+                    val user = User(uid,username,email,password,date)
+                    Utils.SaveUserToFirestore(user,this)
+                }else{
+                    Utils.showToast(this, "Erreur: ${it.exception?.message}")
+                }
+            }
         }
     }
 }

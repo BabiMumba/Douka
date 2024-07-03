@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         loadFragment(HomeFragment())
         inifragment()
 
-        val isSeller = Utils.IsVendeur(this)
+
         binding.addBtn.setOnClickListener {
-            if (isSeller){
+            if (checkIseller()){
                 Utils.newIntent(this, AddProductActivity::class.java)
             }else{
                 Utils.showToast(this, "Créez une boutique pour ajouter un produit")
@@ -70,6 +70,15 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
+    }
+    fun checkIseller():Boolean{
+        val isSeller = Utils.IsVendeur(this)
+        return isSeller
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkIseller()
     }
 
 

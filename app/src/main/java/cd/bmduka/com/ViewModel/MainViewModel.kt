@@ -1,7 +1,9 @@
 package cd.bmduka.com.ViewModel
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +11,7 @@ import cd.babi.chatal.models.Message
 import cd.bmduka.com.Model.Boutique
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.User
+import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -147,9 +150,18 @@ class MainViewModel():ViewModel() {
 
     }
 
-    fun logout(){
+    fun logout(context: Context){
         auth.signOut()
+        //supprimer les données de l'utilisateur
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
 
+    }
+    fun IsVendeur(context: Context):Boolean{
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isVendeur",false)
     }
 
 

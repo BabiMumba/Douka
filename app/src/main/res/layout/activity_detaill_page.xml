@@ -182,6 +182,23 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:id="@+id/vendeur_layout"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Localisation"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_margin="@dimen/_10sdp"
+                />
+            <fragment
+                android:id="@+id/map_fgm"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:visibility="gone"
+                />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

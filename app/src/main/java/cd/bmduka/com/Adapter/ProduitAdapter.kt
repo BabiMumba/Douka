@@ -25,8 +25,8 @@ class ProduitAdapter(val list_produit: ArrayList<Produit>): RecyclerView.Adapter
             name = itemView.findViewById(R.id.nom_produit)
             price = itemView.findViewById(R.id.prix_produit)
             imageView = itemView.findViewById(R.id.image_product)
-
         }
+
 
     }
 
@@ -49,7 +49,7 @@ class ProduitAdapter(val list_produit: ArrayList<Produit>): RecyclerView.Adapter
         Glide.with(holder.itemView.context).load(lien_image).into(holder.imageView)
         holder.itemView.setOnClickListener {
             val id_produit = item.id_product
-            Utils.newIntentWithExtra(holder.itemView.context,DetaillPageActivity::class.java,"id_product",id_produit)
+            Utils.newIntentWithExtra(holder.itemView.context,DetaillPageActivity::class.java,"id_product",id_produit,"","")
         }
 
 

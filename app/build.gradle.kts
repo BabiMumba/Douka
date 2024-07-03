@@ -51,7 +51,9 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.storage)
-   // implementation(libs.firebase.ml.vision)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
+    // implementation(libs.firebase.ml.vision)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,13 +64,8 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.tbuonomo:dotsindicator:5.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")            //Glide image loading library
-
-    //implementation ("com.google.mlkit:image-labeling:17.0.8")
-   // implementation ("com.google.firebase:firebase-core:15.0.2")
-    //implementation ("com.google.firebase:firebase-ml-vision:24.0.3’")
-    //implementation ("com.google.firebase:firebase-ml-vision-image-label-model:20.0.2")
-
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("androidx.transition:transition:1.4.1")
+    implementation ("com.google.maps:google-maps-services:0.1.3")
 
 }
