@@ -48,8 +48,6 @@ class MyMapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener
     private var marker: Marker? = null
     private var mGoogleApiClient: GoogleApiClient? = null
     private lateinit var mLocationRequest: LocationRequest
-
-    private var address: Address? = null
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
 
