@@ -21,9 +21,19 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
+import kotlin.math.acos
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 object Utils {
     //show toast
+
+    private var latitude: Double? = null
+    private var longitude: Double? = null
+
+
     fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
@@ -159,6 +169,31 @@ object Utils {
         ) {
             activity.requestPermissions(permissions, requestCode)
         }
+    }
+    fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val earthRadius = 6371 // rayon moyen de la Terre en kilomètres
+
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+
+        val a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
+                sin(dLon / 2) * sin(dLon / 2)
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        return earthRadius * c // distance en kilomètres
+    }
+    fun setCoordinates(lat: Double, lon: Double) {
+        latitude = lat
+        longitude = lon
+    }
+
+    fun getLatitude(): Double? {
+        return latitude
+    }
+
+    fun getLongitude(): Double? {
+        return longitude
     }
 
 

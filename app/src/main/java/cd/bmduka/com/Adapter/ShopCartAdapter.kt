@@ -1,5 +1,6 @@
 package cd.bmduka.com.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -41,11 +42,29 @@ class ShopCartAdapter(val liste_boutique: ArrayList<Boutique>) :
             shopName.text = boutique.nom_complet
             category.text = boutique.description
         }
-        val email = FirebaseAuth.getInstance().currentUser?.email
-        val id= Utils.getUID(email.toString())
-        holder.itemView.setOnClickListener {
+        val mylatitud = Utils.getLatitude()
+        val mylongitud = Utils.getLongitude()
 
+        Log.d("TAG", "onBindViewHolder: $mylatitud")
+        Log.d("TAG", "onBindViewHolder: $mylongitud")
+        val distance = Utils.calculateDistance(
+            mylatitud!!,
+            mylongitud!!,
+            boutique.coordonne.latitude,
+            boutique.coordonne.longitude
+        )
+        //coordonne btque
+        Log.d("TAG", "Latitude boutique $position: ${boutique.coordonne.latitude}")
+        Log.d("TAG", "Longitude boutique $position: ${boutique.coordonne.longitude}")
+        Log.d("TAG", "Distance boutique $position: $distance")
+        //afficher en km si la distance est superieur a 1km est en metre si la distance est inferieur a 1km
+        if (distance > 1) {
+            //prendre 2 chiffres apres la virgule
+            holder.binding.distance.text = String.format("%.2f", distance) + " km"
+        } else {
+            holder.binding.distance.text = (distance * 1000).toInt().toString() + " m"
         }
+
         holder.binding.btnabonner.setOnClickListener {
             handleBoutiqueClick(boutique, holder)
         }

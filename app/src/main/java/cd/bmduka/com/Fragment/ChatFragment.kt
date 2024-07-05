@@ -1,6 +1,7 @@
 package cd.bmduka.com.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,18 @@ import android.view.ViewGroup
 import cd.bmduka.com.Adapter.ItemChatAdapter
 import cd.bmduka.com.Model.ItemChat
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.chatListPath
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentChatBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class ChatFragment : Fragment() {
     lateinit var binding: FragmentChatBinding
+    private val viewModel = MainViewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,16 +33,37 @@ class ChatFragment : Fragment() {
 
     fun iniTMessage(){
         val liste_message = ArrayList<ItemChat>()
-        liste_message.add(ItemChat("babi","bonjour vous allez bien"))
-        liste_message.add(ItemChat("Malothy","Comment puis-je vous contacter"))
-        liste_message.add(ItemChat("Randy","Je cherche la marque luis vuiton"))
-        liste_message.add(ItemChat("Elkana","toujours a la meme adresse"))
-        liste_message.add(ItemChat("Marie","Les stock est dispo"))
-        liste_message.add(ItemChat("Levis","Nous sommes vraiment desoles"))
-        binding.recyclerChat.apply {
-            adapter=ItemChatAdapter(liste_message)
-        }
-        binding.recyclerChat.adapter!!.notifyDataSetChanged()
+        FirebaseDatabase.getInstance().getReference(chatListPath).child(viewModel.myUid()).orderByChild("timestamp")
+            .addChildEventListener(object : ValueEventListener, com.google.firebase.database.ChildEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (snap in snapshot.children){
+                        val itemChat = snap.getValue(ItemChat::class.java)
+                        if (itemChat != null){
+                            liste_message.add(itemChat)
+                            Log.d("message",itemChat.toString())
+                        }
+                    }
+                   val adapter = ItemChatAdapter(liste_message)
+                    binding.recyclerChat.adapter = adapter
+                }
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    val itemChat = snapshot.getValue(ItemChat::class.java)
+                    if (itemChat != null){
+                        liste_message.add(itemChat)
+                        Log.d("message",itemChat.toString())
+                    }
+                    val adapter = ItemChatAdapter(liste_message)
+                    binding.recyclerChat.adapter = adapter
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("error",error.message)
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+                override fun onChildRemoved(snapshot: DataSnapshot) {}
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+            })
     }
 
 }

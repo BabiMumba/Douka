@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.play.services.location)
     // implementation(libs.firebase.ml.vision)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     //taille ssd et ssp
@@ -67,5 +68,9 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("androidx.transition:transition:1.4.1")
     implementation ("com.google.maps:google-maps-services:0.1.3")
+
+   // implementation ("com.twilio.sdk:twilio:6.0.0")
+
+
 
 }

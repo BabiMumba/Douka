@@ -51,7 +51,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_8sdp"
             app:cornerRadius="@dimen/_5sdp"
-            android:text="S'abonner"
+            android:text="Visiter"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginEnd="@dimen/_8sdp"

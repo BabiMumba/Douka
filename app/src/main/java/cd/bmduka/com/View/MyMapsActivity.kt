@@ -107,9 +107,9 @@ class MyMapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener
     private fun handleValidation() {
         // Vérifiez si un marqueur a été placé
         marker?.let { m ->
-            // Récupérez les coordonnées du marqueur
-            val latitude = m.position.latitude
-            val longitude = m.position.longitude
+            // Récupérez les coordonnées du marqueur 6 chiffres après la virgule pour la précision
+            val lat = String.format("%.6f", m.position.latitude).toDouble()
+            val lng = String.format("%.6f", m.position.longitude).toDouble()
             //recuperer les intents
             val intent = intent
             val id_boutique = intent.getStringExtra("id_boutique")
@@ -121,7 +121,7 @@ class MyMapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener
             val date = intent.getStringExtra("date")
             val theme_color = intent.getStringExtra("theme_color")
             val adresse = intent.getStringExtra("adresse").toString()
-            val coordonne = Coordonne(latitude, longitude,adresse)
+            val coordonne = Coordonne(lat, lng,adresse)
             val shop = Boutique(
                 id_boutique!!,
                 nom_complet!!,

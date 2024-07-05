@@ -11,11 +11,12 @@ class MapHelper(private var googleMap: GoogleMap? = null) {
         this.googleMap = googleMap
         //camera type
       //  googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+        googleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-11.671828362588464, 27.480711936950684), 13f))
     }
 
     fun centerMapOnShop(shop: Boutique) {
         val latLng = LatLng(shop.coordonne.latitude, shop.coordonne.longitude)
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 30f))
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
         googleMap?.addMarker(MarkerOptions().position(latLng).title(shop.nom_complet))
     }
 }

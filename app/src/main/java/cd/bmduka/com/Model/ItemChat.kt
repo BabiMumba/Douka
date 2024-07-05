@@ -1,8 +1,8 @@
 package cd.bmduka.com.Model
 
 data class ItemChat (
-    val name:String,
-    val lastMessage:String,
-    val image_url:String = "",
-    val last_datemsg:String="",
+    var id: String="",
+    var lastMessage: String="",
+    var timestamp: Long=0,
+    var senderId: String=""
 )

@@ -45,8 +45,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         locationUtils = Utils.LocationUtils(this)
         locationUtils.getCurrentLocation { latitude, longitude ->
-            // Utilisez les coordonnées ici, par exemple pour les afficher sur la carte
-            Log.d("MyMapsActivity", "Latitude: $latitude, Longitude: $longitude")
+            // Utilisez les coordonnées ici, par exemple pour les afficher sur la carte,6 chiffres après la virgule
+            val lat = String.format("%.6f", latitude).toDouble()
+            val lon = String.format("%.6f", longitude).toDouble()
+            Utils.setCoordinates(lat, lon)
+            Log.d("MainAtivity", "Latitude: $latitude, Longitude: $longitude")
         }
 
     }

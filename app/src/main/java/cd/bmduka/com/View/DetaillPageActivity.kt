@@ -68,7 +68,7 @@ class DetaillPageActivity : AppCompatActivity() {
         }
 
     }
-    //fonction pour recuperer les données du produit depuise la base de données
+    //fonction pour recuperer les données du produit depuis la base de données
 
     fun getProduct(){
         binding.loaderPage.loaderFrameLayout.visibility = View.VISIBLE

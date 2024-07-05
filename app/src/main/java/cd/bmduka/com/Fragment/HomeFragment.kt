@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +43,7 @@ class HomeFragment : Fragment() {
         initBanner()
         init_categories()
         initFilter()
-        initProduct()
+        initProduct("id_product")
         binding.searchLayout.setOnClickListener {
             val fragment = SearchFragment()
             Utils.loadfragemnt(requireActivity(),fragment)
@@ -113,19 +114,34 @@ class HomeFragment : Fragment() {
         val liste_filtre = ArrayList<Filtre>()
         liste_filtre.add(Filtre("Tous",true))
         liste_filtre.add(Filtre("Recement Ajouter",false))
-        liste_filtre.add(Filtre("Recommandation",false))
+        liste_filtre.add(Filtre("Prix",false))
 
+        val myadapter = FiltreAdapter(liste_filtre)
         binding.recyclerFilter.apply {
-            adapter = FiltreAdapter(liste_filtre)
+            adapter = myadapter
             layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         }
         binding.recyclerFilter.adapter?.notifyDataSetChanged()
+        myadapter.setOnItemClickListener(object : FiltreAdapter.OnItemClickListener {
+            override fun onItemClick(item: Filtre) {
+                for (i in liste_filtre){
+                    i.isSelected = false
+                }
+                item.isSelected = true
+                myadapter.notifyDataSetChanged()
+                when(item.nom){
+                    "Tous" -> initProduct("id_product")
+                    "Recement Ajouter" -> initProduct("date")
+                    "Prix" -> initProduct("prix")
+                }
+            }
+        })
 
     }
 
-    fun initProduct(){
+    fun initProduct(trier:String){
         val liste_product = ArrayList<Produit>()
-        val ref = FirebaseDatabase.getInstance().getReference("Produits")
+        val ref = FirebaseDatabase.getInstance().getReference("Produits").orderByChild(trier)
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 liste_product.clear() // Assurez-vous de vider la liste avant de la remplir à nouveau
