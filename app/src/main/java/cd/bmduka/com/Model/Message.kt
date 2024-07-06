@@ -8,5 +8,4 @@ data class Message(
     var message: String = "",
     var messageId: String = "",
     var time: Long = Date().time,
-    var isReceived: Boolean = true
 )

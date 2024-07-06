@@ -15,6 +15,8 @@ import cd.bmduka.com.Adapter.SliderAdapter
 import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.ActivityDetaillPageBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -29,6 +31,7 @@ import com.google.firebase.database.ValueEventListener
 class DetaillPageActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetaillPageBinding
     lateinit var id_product: String
+    val viewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
       //  enableEdgeToEdge()
@@ -112,6 +115,22 @@ class DetaillPageActivity : AppCompatActivity() {
         if (sliders.size>1){
             binding.dotsIndicator.visibility = View.VISIBLE
             binding.dotsIndicator.attachTo(binding.viewpager)
+        }
+        if (produit.id_boutique == viewModel.myUid()){
+            binding.btnInteresser.visibility = View.GONE
+
+        }
+        binding.btnInteresser.setOnClickListener {
+            val texte_message = """
+            Bonjour,
+            Je suis intéressé(e) par 
+            votre produit en vente [${produit.nom}]. 
+             et je voulais savoir s'il était toujours disponible.
+              Si oui, pourriez-vous me donner plus d'informations sur le produit ?
+           
+        """.trimIndent()
+
+            Utils.newIntentWithExtra(this,MessageActivity::class.java,"id_sender",produit.id_boutique,"msg",texte_message)
         }
 
 

@@ -186,19 +186,21 @@ class MainViewModel():ViewModel() {
                         "id" to message.receiverId,
                         "lastMessage" to message.message,
                         "timestamp" to message.time,
-                        "senderId" to message.senderId
+                        "senderId" to message.senderId,
+                        "receiverId" to message.receiverId
                     ))
                 mydb.getReference(chatListPath).child(message.receiverId)
                     .child(message.senderId).setValue(mapOf(
                         "id" to message.senderId,
                         "lastMessage" to message.message,
                         "timestamp" to message.time,
-                        "senderId" to message.senderId
+                        "senderId" to message.senderId,
+                        "receiverId" to message.receiverId
                     ))
             }
     }
 
-    fun fetchMessage(senderId: String, receiverId: String) {
+    fun fetchMessage(receiverId: String) {
         val messageList = ArrayList<Message>()
         mydb.getReference(messagePath)
             .orderByChild("time")
@@ -206,9 +208,9 @@ class MainViewModel():ViewModel() {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val message = snapshot.getValue(Message::class.java)
                     if (message != null) {
-                        if ((message.senderId == senderId && message.receiverId == receiverId) ||
-                            (message.senderId == receiverId && message.receiverId == senderId)
-                        ) {
+                        if(
+                            (message.senderId ==myUid() && message.receiverId ==receiverId) || (message.senderId ==receiverId && message.receiverId==myUid())
+                        ){
                             messageList.add(message)
                             _messages.value = messageList
                         }

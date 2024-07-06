@@ -4,5 +4,6 @@ data class ItemChat (
     var id: String="",
     var lastMessage: String="",
     var timestamp: Long=0,
-    var senderId: String=""
+    var senderId: String="",
+    var receiverId: String="",
 )

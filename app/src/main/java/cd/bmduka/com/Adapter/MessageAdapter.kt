@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cd.babi.chatal.models.Message
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.ReceivedMessageItemBinding
 import cd.bmduka.com.databinding.SentMessageItemBinding
 
 class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val viewModel = MainViewModel()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return when (viewType){
@@ -50,7 +52,7 @@ class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (liste_message[position].isReceived){
+        return if (liste_message[position].senderId==viewModel.myUid()){
             1
         }else 0
     }
@@ -64,17 +66,6 @@ class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Message) {
             binding.tvMessage.text = item.message
-            /*
-            if(position==dataList.size-1){
-                if(item.seen){
-                    binding.seen.visibility = View.VISIBLE
-                }
-                else{
-                    binding.seen.text = itemView.context.getString(R.string.sent)
-                    binding.seen.visibility = View.VISIBLE
-                }
-            }
-            */
         }
     }
 

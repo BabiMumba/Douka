@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import cd.bmduka.com.Adapter.AddProductImagesAdapter
 import cd.bmduka.com.Model.Produit
 import cd.bmduka.com.Utils.Utils
+import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.ActivityAddProductBinding
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -27,6 +28,7 @@ class AddProductActivity : AppCompatActivity() {
     private val PERMISSION_REQUEST_CODE = 200
     lateinit var binding: ActivityAddProductBinding
     lateinit var storageRef: StorageReference
+    val viewmodel = MainViewModel()
     private var imgList = mutableListOf<Uri>()
     private val categories = arrayOf(
         "Électronique",
@@ -129,6 +131,7 @@ class AddProductActivity : AppCompatActivity() {
                             imageRef.downloadUrl.addOnSuccessListener { uri ->
                                 imagesList.add(uri.toString())
                                 val id_product = databaseRef.push().key.toString()
+                                val id_admin = viewmodel.myUid()
                                 // Vérifier si toutes les images ont été téléchargées
                                 if (imagesList.size == imgList.size) {
                                     // Toutes les images ont été téléchargées, enregistrer les informations sur Firebase Database
@@ -137,7 +140,7 @@ class AddProductActivity : AppCompatActivity() {
                                         date_auj,
                                         binding.edtDescription.text.toString(),
                                         id_product,
-                                        "id_boutique",
+                                        id_admin,
                                         binding.tvCategorySelected.text.toString(),
                                         binding.tvCategorySelected.text.toString(),
                                         0,
@@ -203,7 +206,7 @@ class AddProductActivity : AppCompatActivity() {
     }
 
     private fun checkPermission(): Boolean {
-        //log version
+        //log version de l'appareil
         val result = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -256,6 +259,8 @@ class AddProductActivity : AppCompatActivity() {
                         "Vous devez valider les permissions pour continuer",
                         Toast.LENGTH_SHORT
                     ).show()
+                    //redeamnder la permission
+                    requestPermission()
                 }
             }
         }

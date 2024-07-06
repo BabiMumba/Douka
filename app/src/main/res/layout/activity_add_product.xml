@@ -57,7 +57,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prix de l'article en Fc"
+                android:text="Prix de l'article en dollar"
                 android:textStyle="bold"
                 android:textSize="@dimen/_10sdp"
                 android:textColor="@color/primary_text"
@@ -70,7 +70,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Prix en franc"
+                    android:hint="Prix en $"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:maxLines="1"
@@ -123,7 +123,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:textStyle="normal"
                         android:textAllCaps="false"
-                        android:backgroundTint="@color/vert"
+                        android:backgroundTint="@color/jaune"
                         app:cornerRadius="@dimen/_5sdp"
                         />
                 </RelativeLayout>
@@ -138,12 +138,12 @@
                         android:id="@+id/etat_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primary_text"
+                        android:textColor="@color/white"
                         android:text="Etat du produit"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:textStyle="normal"
                         android:textAllCaps="false"
-                        android:backgroundTint="@color/vert"
+                        android:backgroundTint="@color/bleu"
                         app:cornerRadius="@dimen/_5sdp"
                         />
                 </RelativeLayout>

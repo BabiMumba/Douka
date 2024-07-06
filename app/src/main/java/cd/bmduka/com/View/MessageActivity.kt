@@ -25,15 +25,21 @@ class MessageActivity : AppCompatActivity() {
         myadapter = MessageAdapter(liste_message)
         binding.recycleMessage.adapter = myadapter
 
-        val id_sender = "babi"
-        InitMessages(id_sender)
+        val id_receiver = intent.getStringExtra("id_sender").toString()
+        val mesg_txt = intent.getStringExtra("msg").toString()
 
+        InitMessages(id_receiver)
+        binding.message.setText(mesg_txt)
+
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
         binding.btnSend.setOnClickListener {
             val message = binding.message.text.toString()
             if (message.isNotEmpty()) {
                 val messages = Message(
                     viewModel.myUid(),
-                    id_sender,
+                    id_receiver,
                     message
                 )
                 viewModel.sendMessage(messages)
@@ -46,13 +52,22 @@ class MessageActivity : AppCompatActivity() {
         }
     }
 
-    private fun InitMessages(id_sender: String) {
-        viewModel.fetchMessage(viewModel.myUid(), id_sender)
+    private fun InitMessages(id_receiver: String) {
+        viewModel.fetchMessage( id_receiver)
         viewModel.messages.observe(this) { messageList ->
             liste_message.clear()
             liste_message.addAll(messageList)
             myadapter.notifyDataSetChanged()
             binding.recycleMessage.scrollToPosition(liste_message.size - 1)
+        }
+
+        viewModel.GetDataUser(id_receiver) {user->
+            if (user != null){
+                binding.userName.text = user.name
+            }else{
+                binding.userName.text = "Inconnu"
+            }
+
         }
     }
 }

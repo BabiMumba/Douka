@@ -66,4 +66,10 @@ class ChatFragment : Fragment() {
             })
     }
 
+
+    override fun onResume() {
+        iniTMessage()
+        super.onResume()
+    }
+
 }
