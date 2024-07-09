@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import cd.bmduka.com.Adapter.ItemChatAdapter
 import cd.bmduka.com.Model.ItemChat
 import cd.bmduka.com.R
+import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.Utils.chatListPath
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentChatBinding
@@ -27,7 +28,11 @@ class ChatFragment : Fragment() {
     ): View {
         binding = FragmentChatBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        iniTMessage()
+        if (Utils.IsConnected(requireContext())){
+            iniTMessage()
+        }else{
+            Utils.showToast(requireContext(),"Veuillez vous connecter")
+        }
         return binding.root
     }
 

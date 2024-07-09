@@ -15,7 +15,7 @@
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
             android:layout_alignParentStart="true"
-            android:src="@drawable/baseline_person_24"
+            android:src="@drawable/market_img"
             android:id="@+id/rc_image_view"
             app:civ_border_color="@color/primary"
             app:civ_border_width="@dimen/_2sdp"
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Babi Mumba"
+            android:text="StoneTech"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_12ssp"
             android:layout_marginStart="@dimen/_8sdp"

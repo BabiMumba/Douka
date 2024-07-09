@@ -33,14 +33,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.bottomNavigationView.selectedItemId = R.id.homeMenu
         loadFragment(HomeFragment())
         inifragment()
-
-
         binding.addBtn.setOnClickListener {
-            if (checkIseller()){
-                Utils.newIntent(this, AddProductActivity::class.java)
-            }else{
-                Utils.showToast(this, "Créez une boutique pour ajouter un produit")
-            }
+           if(Utils.IsConnected(this)){
+                if(checkIseller()){
+                     Utils.newIntent(this, AddProductActivity::class.java)
+                }else{
+                     Utils.showToast(this,"Vous n'êtes pas un vendeur")
+                }
+           }else{
+                Utils.showToast(this,"Veuillez vous connecter")
+           }
         }
 
         locationUtils = Utils.LocationUtils(this)

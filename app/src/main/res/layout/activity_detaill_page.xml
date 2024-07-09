@@ -215,6 +215,7 @@
         app:cornerRadius="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:visibility="gone"
         />
 
 

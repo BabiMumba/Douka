@@ -45,6 +45,9 @@
         android:theme="@style/Theme.Duka"
         tools:targetApi="31">
         <activity
+            android:name=".View.GliActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.FilterActivity"
             android:exported="false" />
         <activity

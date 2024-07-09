@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                         .addOnCompleteListener {
                             if (it.isSuccessful){
                                 mainViewModel.GetUsername {name->
-                                    Utils.savename(this,name)
+                                    Utils.savename(this,name,true)
                                 }
                                 Utils.isloading(binding.btnLogin,binding.progress,false)
                                 Utils.newIntent(this,MainActivity::class.java)

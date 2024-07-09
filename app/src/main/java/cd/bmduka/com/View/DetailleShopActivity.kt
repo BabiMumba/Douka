@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager.widget.ViewPager
 import cd.bmduka.com.Adapter.ViewPagerAdapter
+import cd.bmduka.com.Fragment.tabs.AvisFragment
+import cd.bmduka.com.Fragment.tabs.InfoFragment
 import cd.bmduka.com.Fragment.tabs.TabsHomeFragment
 import cd.bmduka.com.R
 import cd.bmduka.com.databinding.ActivityDetailleShopBinding
@@ -44,9 +46,9 @@ class DetailleShopActivity : AppCompatActivity() {
             putString("id_btq", intent.getStringExtra("id_btq"))
         }
         val adapter = ViewPagerAdapter(this.supportFragmentManager)
-        adapter.addFragment(TabsHomeFragment(), "Info")
+        adapter.addFragment(InfoFragment(), "Info")
         adapter.addFragment(TabsHomeFragment(), "Accueil")
-        adapter.addFragment(TabsHomeFragment(), "Avis")
+        adapter.addFragment(AvisFragment(), "Vente")
         viewpagershop.adapter = adapter
     }
 

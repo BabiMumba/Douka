@@ -60,7 +60,7 @@
                         android:layout_marginEnd="15dp"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:text="Android Developer"
+                        android:text="Lubumbashi, Katanga"
                         android:textColor="@color/secondary_text"
                         android:textSize="14sp" />
 
@@ -80,7 +80,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
-                                android:weightSum="4">
+                                android:weightSum="3">
 
                                 <RelativeLayout
                                     android:id="@+id/item_0_click_parent"
@@ -223,33 +223,6 @@
 
                                 </RelativeLayout>
 
-                                <View
-                                    android:id="@+id/item_divider_1"
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:background="#ececec" />
-
-                                <RelativeLayout
-                                    android:id="@+id/item_3_click_parent"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:background="?attr/selectableItemBackground"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Explorer"
-                                        android:textColor="@color/Accent"
-                                        android:padding="@dimen/_5sdp"
-                                        />
-
-                                </RelativeLayout>
 
                             </LinearLayout>
 
@@ -283,7 +256,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/profile"
+                    android:src="@drawable/market_img"
                     android:background="@drawable/grey_bg" />
 
             </RelativeLayout>

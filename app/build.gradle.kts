@@ -67,7 +67,7 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("androidx.transition:transition:1.4.1")
-    implementation ("com.google.maps:google-maps-services:0.1.3")
+    implementation ("com.google.maps:google-maps-services:0.9.3")
 
    // implementation ("com.twilio.sdk:twilio:6.0.0")
 

@@ -42,7 +42,11 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mail = mainViewModel.GetmailUser()
 
-        binding.userMail.text = mail
+        if (Utils.IsConnected(requireContext())){
+            binding.userMail.text = mail
+        }else{
+            binding.userMail.text = "Veuillez vous connecter"
+        }
         binding.logout.setOnClickListener {
             logout()
         }
@@ -56,7 +60,11 @@ class ProfileFragment : Fragment() {
         binding.userName.text = name
 
         binding.edtProfileBtn.setOnClickListener {
-            Utils.newIntent(requireActivity(),EditProfileActivity::class.java)
+            if (Utils.IsConnected(requireContext())){
+                Utils.newIntent(requireActivity(),EditProfileActivity::class.java)
+            }else{
+                Utils.showToast(requireContext(),"Veuillez vous connecter")
+            }
         }
 
 

@@ -116,9 +116,12 @@ class DetaillPageActivity : AppCompatActivity() {
             binding.dotsIndicator.visibility = View.VISIBLE
             binding.dotsIndicator.attachTo(binding.viewpager)
         }
-        if (produit.id_boutique == viewModel.myUid()){
-            binding.btnInteresser.visibility = View.GONE
+        if (produit.id_boutique != viewModel.myUid()){
+            binding.btnInteresser.visibility = View.VISIBLE
 
+        }
+        binding.vendeurLayout.viewSeller.setOnClickListener {
+            Utils.newIntentWithExtra(this,DetailleShopActivity::class.java,"id_btq",produit.id_boutique,"","")
         }
         binding.btnInteresser.setOnClickListener {
             val texte_message = """
@@ -130,7 +133,11 @@ class DetaillPageActivity : AppCompatActivity() {
            
         """.trimIndent()
 
-            Utils.newIntentWithExtra(this,MessageActivity::class.java,"id_sender",produit.id_boutique,"msg",texte_message)
+            if (Utils.IsConnected(this)){
+                Utils.newIntentWithExtra(this,MessageActivity::class.java,"id_sender",produit.id_boutique,"msg",texte_message)
+            }else{
+                Utils.showToast(this,"Veuillez Creer un compte pour continuer")
+            }
         }
 
 

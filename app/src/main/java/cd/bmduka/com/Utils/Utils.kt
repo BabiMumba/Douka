@@ -99,15 +99,20 @@ object Utils {
 
         return id_user
     }
-    fun savename(context: Context,name_user:String){
+    fun savename(context: Context,name_user:String,isConnected:Boolean=false){
         val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("name",name_user)
+        editor.putBoolean("isConnected",isConnected)
         editor.apply()
     }
     fun IsVendeur(context: Context):Boolean{
         val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.getBoolean("isVendeur",false)
+    }
+    fun IsConnected(context: Context):Boolean{
+        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isConnected",false)
     }
 
     fun saveVendeur(context: Context,isVendeur:Boolean){
@@ -131,7 +136,7 @@ object Utils {
         db.collection("users").document(user.uid).set(user)
             .addOnCompleteListener {
                 if(it.isSuccessful){
-                    savename(context,user.name)
+                    savename(context,user.name,false)
                     newIntentFinish(context, MainActivity::class.java)
                 }
             }

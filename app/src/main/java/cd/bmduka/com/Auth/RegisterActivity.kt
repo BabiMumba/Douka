@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
         db.collection("users").document(user.uid).set(user)
             .addOnCompleteListener {
                 if(it.isSuccessful){
-                    Utils.savename(this,user.name)
+                    Utils.savename(this,user.name,true)
                     Utils.isloading(binding.btnRegister,binding.progress,false)
                     Utils.newIntentFinish(this, MainActivity::class.java)
                 }else{

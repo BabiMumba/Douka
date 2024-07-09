@@ -1,6 +1,7 @@
 package cd.bmduka.com.View
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,6 +38,9 @@ class OnboardActivity : AppCompatActivity() {
             Utils.newIntent(this, LoginActivity::class.java)
         }
         binding.tvInvited.setOnClickListener {
+            binding.btnRegister.isEnabled = false
+            binding.btnLogin.isEnabled = false
+            binding.progress.visibility = View.VISIBLE
             Authentification.signInAnonymously().addOnCompleteListener {
                 if(it.isSuccessful){
                     val username = "Anonyme"
@@ -45,9 +49,13 @@ class OnboardActivity : AppCompatActivity() {
                     val date = Utils.getCurrentDate()
                     val uid = it.result?.user?.uid.toString()
                     val user = User(uid,username,email,password,date)
+                    binding.progress.visibility = View.GONE
                     Utils.SaveUserToFirestore(user,this)
                 }else{
+                    binding.progress.visibility = View.GONE
                     Utils.showToast(this, "Erreur: ${it.exception?.message}")
+                    binding.btnRegister.isEnabled = true
+                    binding.btnLogin.isEnabled = true
                 }
             }
         }
