@@ -48,8 +48,8 @@ class HomeFragment : Fragment() {
             val fragment = SearchFragment()
             Utils.loadfragemnt(requireActivity(),fragment)
         }
-        binding.searchCamera.setOnClickListener {
-            Utils.newIntent(requireActivity(),SearchByImageActivity::class.java)
+        binding.filterBtn.setOnClickListener {
+            ///val fragment = FilterFragment()
         }
 
 
@@ -86,20 +86,16 @@ class HomeFragment : Fragment() {
 
     fun init_categories(){
         val items = ArrayList<homecategorie>()
-        items.add(homecategorie("vetement",1))
-        items.add(homecategorie("chaussure",2))
-        items.add(homecategorie("sac",3))
-        items.add(homecategorie("montre",4))
-        items.add(homecategorie("bijoux",5))
-        items.add(homecategorie("parfum",6))
-        items.add(homecategorie("cosmetique",7))
-        items.add(homecategorie("electronique",8))
-        items.add(homecategorie("telephone",9))
-        items.add(homecategorie("ordinateur",10))
-        items.add(homecategorie("maison",11))
-        items.add(homecategorie("jardin",12))
-        items.add(homecategorie("sport",13))
-        items.add(homecategorie("bebe",14))
+        items.add(homecategorie("vetement",1,"https://cdn-icons-png.flaticon.com/128/3345/3345358.png"))
+        items.add(homecategorie("chaussure",2,"https://cdn-icons-png.flaticon.com/128/4598/4598559.png"))
+        items.add(homecategorie("sac",3,"https://cdn-icons-png.flaticon.com/128/3345/3345654.png"))
+        items.add(homecategorie("montre",4,"https://cdn-icons-png.flaticon.com/128/3549/3549067.png"))
+        items.add(homecategorie("electronique",8,"https://cdn-icons-png.flaticon.com/128/3659/3659900.png"))
+        items.add(homecategorie("telephone",9,"https://cdn-icons-png.flaticon.com/128/519/519184.png"))
+        items.add(homecategorie("ordinateur",10,"https://cdn-icons-png.flaticon.com/128/9380/9380459.png"))
+        items.add(homecategorie("maison",11,"https://cdn-icons-png.flaticon.com/128/7423/7423011.png"))
+        items.add(homecategorie("jardin",12,"https://cdn-icons-png.flaticon.com/128/4145/4145840.png"))
+        items.add(homecategorie("sport",13,"https://cdn-icons-png.flaticon.com/128/4163/4163679.png"))
         binding.recyclerCategories.apply {
               adapter = CategorieHomeAdapter(items)
            //manager

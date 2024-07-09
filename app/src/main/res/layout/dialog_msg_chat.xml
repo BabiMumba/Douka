@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/grey"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/market_img"
+            android:id="@+id/image_send"
+            android:scaleType="centerInside"
+            android:layout_marginTop="8dp"
+            />
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progress" />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:id="@+id/edt_msg"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="5dp"
+            android:minHeight="46dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/item_input_card_parent"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="23dp"
+                app:cardElevation="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/item_mic_card_parent"
+                android:minHeight="46dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom">
+
+                    <RelativeLayout
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="46dp">
+
+                        <EditText
+                            android:id="@+id/message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_message_text_field"
+                            android:hint="Votre legende"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:scrollbars="vertical"
+                            android:textColor="@color/black"
+                            android:textColorHint="#757C82"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/item_mic_card_parent"
+                app:cardBackgroundColor="#01AF9B"
+                app:cardCornerRadius="23dp"
+                app:cardElevation="0dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/item_mic_click_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ImageView
+                        android:id="@+id/btnSend"
+                        app:srcCompat="@drawable/ic_send"
+                        app:tint="#FFFEFF"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -7,6 +7,7 @@ import cd.babi.chatal.models.Message
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.ReceivedMessageItemBinding
 import cd.bmduka.com.databinding.SentMessageItemBinding
+import com.bumptech.glide.Glide
 
 class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -59,13 +60,39 @@ class MessageAdapter(private var liste_message:ArrayList<Message>):RecyclerView.
     inner class ViewHolderReceived(private val binding: ReceivedMessageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Message) {
-            binding.tvMessage.text = item.message
+            if (item.conteinImage){
+                binding.imageSend.visibility = ViewGroup.VISIBLE
+                //charger l'image
+                Glide.with(binding.imageSend.context).load(item.imageUrl).into(binding.imageSend)
+            }
+            else {
+                binding.imageSend.visibility = ViewGroup.GONE
+            }
+            //si le texte est vide
+            if (item.message.isNotEmpty()){
+                binding.tvMessage.text = item.message
+            }else{
+                binding.tvMessage.visibility = ViewGroup.GONE
+            }
+
         }
     }
     inner class ViewHolderSent(private val binding: SentMessageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Message) {
             binding.tvMessage.text = item.message
+            if (item.conteinImage) {
+                binding.imageSend.visibility = ViewGroup.VISIBLE
+                // Charger et afficher l'image ici
+                Glide.with(binding.imageSend.context).load(item.imageUrl).into(binding.imageSend)
+            } else {
+                binding.imageSend.visibility = ViewGroup.GONE
+            }
+            if (item.message.isNotEmpty()){
+                binding.tvMessage.text = item.message
+            }else{
+                binding.tvMessage.visibility = ViewGroup.GONE
+            }
         }
     }
 

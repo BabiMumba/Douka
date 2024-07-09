@@ -9,6 +9,17 @@
     android:layout_height="wrap_content"
     tools:ignore="UseCompoundDrawables">
 
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/market_img"
+        android:id="@+id/image_send"
+        android:layout_gravity="end"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        />
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
@@ -35,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/seen"
+        android:visibility="gone"
         android:layout_gravity="end"
         android:layout_marginTop="-4dp"
         android:layout_marginEnd="12dp"/>

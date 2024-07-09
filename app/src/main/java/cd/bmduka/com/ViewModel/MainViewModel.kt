@@ -187,7 +187,9 @@ class MainViewModel():ViewModel() {
                         "lastMessage" to message.message,
                         "timestamp" to message.time,
                         "senderId" to message.senderId,
-                        "receiverId" to message.receiverId
+                        "receiverId" to message.receiverId,
+                        "imageUrl" to "",
+                        "conteinImage" to message.conteinImage
                     ))
                 mydb.getReference(chatListPath).child(message.receiverId)
                     .child(message.senderId).setValue(mapOf(
@@ -195,7 +197,9 @@ class MainViewModel():ViewModel() {
                         "lastMessage" to message.message,
                         "timestamp" to message.time,
                         "senderId" to message.senderId,
-                        "receiverId" to message.receiverId
+                        "receiverId" to message.receiverId,
+                        "imageUrl" to "",
+                        "conteinImage" to message.conteinImage
                     ))
             }
     }

@@ -8,4 +8,6 @@ data class Message(
     var message: String = "",
     var messageId: String = "",
     var time: Long = Date().time,
+    var conteinImage: Boolean = false,
+    var imageUrl: String = ""
 )

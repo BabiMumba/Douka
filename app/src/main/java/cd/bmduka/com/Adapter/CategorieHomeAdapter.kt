@@ -14,7 +14,7 @@ class CategorieHomeAdapter(
     val items: ArrayList<homecategorie>,
 ):RecyclerView.Adapter<CategorieHomeAdapter.CategorieViewHolder>() {
     inner class CategorieViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-     //  val image: ImageView = itemView.findViewById(R.id.categorie_image)
+         val image: ImageView = itemView.findViewById(R.id.img_dot_categoris)
         val title: TextView = itemView.findViewById(R.id.categories_name)
     }
 
@@ -27,9 +27,11 @@ class CategorieHomeAdapter(
     override fun onBindViewHolder(holder: CategorieViewHolder, position: Int) {
         val item = items[position]
         holder.title.text = item.title
-       /* Glide.with(holder.itemView.context)
-            .load(item.image)
-            .into(holder.image)*/
+        if (item.image != null|| item.image != ""){
+            Glide.with(holder.itemView.context)
+                .load(item.image)
+                .into(holder.image)
+        }
         //les elements de la liste apartir de 1 la marge est de 10dp
         if (position == 0){
             val params = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
