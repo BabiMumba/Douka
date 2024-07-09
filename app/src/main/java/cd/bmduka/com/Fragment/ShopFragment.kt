@@ -33,7 +33,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class ShopFragment : Fragment(), OnMapReadyCallback {
-    private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val shopRepository = ShopRepository()
     private val mapHelper = MapHelper()
     private val viewModel = ShopViewModel(shopRepository, mapHelper)

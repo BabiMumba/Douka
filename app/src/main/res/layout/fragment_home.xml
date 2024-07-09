@@ -179,51 +179,19 @@
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="@dimen/_15ssp"
                     />
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp"
-                    android:layout_marginTop="@dimen/_10sdp">
-
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/progressBar_slider"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:indeterminate="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp"
-                        android:id="@+id/viewPager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        />
-                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                        android:visibility="gone"
-                        android:id="@+id/dots_indicator"
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    >
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:dotsColor="@color/grey"
-                        app:dotsCornerRadius="8dp"
-                        app:dotsSize="@dimen/_5sdp"
-                        app:dotsSpacing="@dimen/_2sdp"
-                        app:dotsWidthFactor="2.5"
-                        app:selectedDotColor="@color/Accent"
-                        app:progressMode="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/viewPager"
-                        tools:visibility="visible"
-
+                        android:layout_height="match_parent"
+                        android:src="@drawable/banner_pric1"
+                        android:scaleType="fitXY"
                         />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
                 <RelativeLayout
                     android:id="@+id/rel_one"
                     android:layout_width="match_parent"

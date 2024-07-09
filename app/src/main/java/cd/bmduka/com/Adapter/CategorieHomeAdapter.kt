@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import cd.bmduka.com.Fragment.SearchFragment
 import cd.bmduka.com.Model.homecategorie
 import cd.bmduka.com.R
 import com.bumptech.glide.Glide
@@ -27,7 +28,7 @@ class CategorieHomeAdapter(
     override fun onBindViewHolder(holder: CategorieViewHolder, position: Int) {
         val item = items[position]
         holder.title.text = item.title
-        if (item.image != null|| item.image != ""){
+        if (true){
             Glide.with(holder.itemView.context)
                 .load(item.image)
                 .into(holder.image)
@@ -37,6 +38,17 @@ class CategorieHomeAdapter(
             val params = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
             params.setMargins(0,0,0,0)
             holder.itemView.layoutParams = params
+        }
+        holder.itemView.setOnClickListener {
+            val categorie = items[position].title
+            val fragment = SearchFragment()
+            val bundle = android.os.Bundle()
+            bundle.putString("categorie",categorie)
+            fragment.arguments = bundle
+            val transaction = (holder.itemView.context as androidx.fragment.app.FragmentActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_fragment, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 

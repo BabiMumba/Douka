@@ -40,7 +40,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        initBanner()
         init_categories()
         initFilter()
         initProduct("id_product")
@@ -49,39 +48,12 @@ class HomeFragment : Fragment() {
             Utils.loadfragemnt(requireActivity(),fragment)
         }
         binding.filterBtn.setOnClickListener {
-            ///val fragment = FilterFragment()
+            val fragment = SearchFragment()
+            Utils.loadfragemnt(requireActivity(),fragment)
         }
 
 
         return binding.root
-    }
-
-    fun initBanner(){
-        binding.progressBarSlider.visibility = View.VISIBLE
-        viewModel.banners.observe(requireActivity()) { items ->
-                banners(items)
-                binding.progressBarSlider.visibility = View.GONE
-        }
-        viewModel.loadBanners()
-
-    }
-    fun banners(image:List<SliderModel>){
-        binding.viewPager.adapter = SliderAdapter(image,binding.viewPager)
-        binding.viewPager.clipToPadding = false
-        binding.viewPager.clipChildren = false
-        binding.viewPager.offscreenPageLimit = 3
-        binding.viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
-        val compositePageTransformer = CompositePageTransformer().apply {
-            addTransformer(MarginPageTransformer(40))
-        }
-        binding.viewPager.setPageTransformer(compositePageTransformer)
-
-        if (image.size > 1){
-            binding.dotsIndicator.visibility = View.VISIBLE
-            binding.dotsIndicator.attachTo(binding.viewPager)
-        }
-
     }
 
     fun init_categories(){

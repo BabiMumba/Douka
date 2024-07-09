@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import cd.bmduka.com.Adapter.FilterProduct
 import cd.bmduka.com.Model.Produit
@@ -28,12 +29,27 @@ class SearchFragment : Fragment() {
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        getData()
+        var categorie = arguments?.getString("categorie").toString()
+        Toast.makeText(requireActivity(), "$categorie", Toast.LENGTH_SHORT).show()
+
+        if (categorie=="null"){
+            categorie = ""
+        }
+        if (categorie.isNotEmpty()){
+            binding.toolbarSearch.homeSearchEditText.hint = "Rechercher dans $categorie"
+        }else{
+            binding.toolbarSearch.homeSearchEditText.hint = "Rechercher un produit"
+        }
+        getData(categorie)
+
+        binding.back.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
 
         return binding.root
     }
-    fun getData(){
+    fun getData(categorie: String = ""){
         val filtres = FilterProduct()
         val liste_product = ArrayList<Produit>()
         val ref = FirebaseDatabase.getInstance().getReference("Produits")
@@ -44,7 +60,16 @@ class SearchFragment : Fragment() {
                 for (snap in snapshot.children) {
                     val produit = snap.getValue(Produit::class.java)
                     if (produit != null) {
-                        liste_product.add(produit)
+                        if (categorie.isNotEmpty()) {
+                            if (produit.categorie == categorie) {
+                                liste_product.add(produit)
+                            }
+                        } else {
+                            liste_product.add(produit)
+                        }
+                    }else{
+                        Log.d("TAG", "onDataChange: Produit est null")
+
                     }
                 }
                 filtres.items = liste_product
