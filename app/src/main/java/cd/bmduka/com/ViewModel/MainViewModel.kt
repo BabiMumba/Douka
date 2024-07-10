@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cd.babi.chatal.models.Message
 import cd.bmduka.com.Model.Boutique
-import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.User
 import cd.bmduka.com.Utils.DATA
 import cd.bmduka.com.Utils.Utils
@@ -29,34 +28,10 @@ class MainViewModel():ViewModel() {
     val db = FirebaseFirestore.getInstance()
     val mydb = FirebaseDatabase.getInstance()
     val auth = Firebase.auth
-    private val _banner = MutableLiveData<List<SliderModel>>()
-    val banners: LiveData<List<SliderModel>> = _banner
     private val _messages = MutableLiveData<ArrayList<Message>>()
     val messages: LiveData<ArrayList<Message>> = _messages
 
 
-
-    fun loadBanners(){
-        val ref = firebaseDatabase.getReference("Banner")
-        ref.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val listes = mutableListOf<SliderModel>()
-                for (snap in snapshot.children){
-                    val banner = snap.getValue(SliderModel::class.java)
-                    if (banner != null){
-                        listes.add(banner)
-                    }
-                }
-                _banner.value = listes
-
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                _banner.value = null
-            }
-        })
-    }
 
     fun GetmailUser():String{
         val mail = auth.currentUser!!.email.toString()
@@ -112,18 +87,6 @@ class MainViewModel():ViewModel() {
             }
     }
 
-    fun CreateUser(mail:String,password:String,name:String){
-        auth.createUserWithEmailAndPassword(mail,password)
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    val uid = it.result.user!!.uid
-                    val date = Utils.getCurrentDate()
-                    val user = User(uid,name,mail,password,date)
-                    SaveUser(user)
-                }
-            }
-    }
-
     fun SaveUser(user: User){
         db.collection("users").document(user.uid).set(user)
             .addOnCompleteListener {
@@ -134,31 +97,6 @@ class MainViewModel():ViewModel() {
                 }
             }
     }
-
-    fun fetchBoutique(id_admin:String,callback: (Boutique) -> Unit){
-        val ref = firebaseDatabase.getReference("Boutique")
-        ref.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (snap in snapshot.children){
-                    val boutique = snap.getValue(Boutique::class.java)
-                    if (boutique != null){
-                        if (boutique.id_admin==id_admin){
-                            callback(boutique)
-                            break
-                        }
-                    }
-                }
-
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("tag","fetchboutique")
-            }
-        })
-
-    }
-
     fun logout(context: Context){
         auth.signOut()
         //supprimer les données de l'utilisateur
@@ -167,10 +105,6 @@ class MainViewModel():ViewModel() {
         editor.clear()
         editor.apply()
 
-    }
-    fun IsVendeur(context: Context):Boolean{
-        val sharedPreferences = context.getSharedPreferences(DATA.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("isVendeur",false)
     }
     fun myUid():String{
         val uid = Utils.getUID(auth.currentUser!!.email.toString())

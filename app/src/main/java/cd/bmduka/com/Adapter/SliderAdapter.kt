@@ -33,13 +33,13 @@ class SliderAdapter(
     }
     inner class SliderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val image: ImageView = itemView.findViewById(R.id.slider_image)
-         fun setImage(sliderItems: SliderModel,context: Context) {
-             val requestOptions = RequestOptions().transform(CenterInside())
-             Glide.with(context)
-                 .load(sliderItems.url)
-                 .apply(requestOptions)
-                 .into(image)
-         }
+        fun setImage(sliderItems: SliderModel,context: Context) {
+            val requestOptions = RequestOptions().transform(CenterInside())
+            Glide.with(context)
+                .load(sliderItems.url)
+                .apply(requestOptions)
+                .into(image)
+        }
 
     }
 

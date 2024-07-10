@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import cd.bmduka.com.Fragment.ChatFragment
-import cd.bmduka.com.Fragment.FavoriFragment
 import cd.bmduka.com.Fragment.HomeFragment
 import cd.bmduka.com.Fragment.ProfileFragment
 import cd.bmduka.com.Fragment.ShopFragment

@@ -32,6 +32,14 @@
         />
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/line1"
+        android:layout_below="@id/tv_invited"
+        android:src="@drawable/capt_app"
+        />
     <LinearLayout
         android:layout_marginBottom="@dimen/_10sdp"
         android:id="@+id/line1"

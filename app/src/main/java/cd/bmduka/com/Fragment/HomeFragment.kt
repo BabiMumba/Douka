@@ -13,16 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import cd.bmduka.com.Adapter.CategorieHomeAdapter
-import cd.bmduka.com.Adapter.SliderAdapter
 import cd.bmduka.com.Model.Filtre
 import cd.bmduka.com.Adapter.FiltreAdapter
 import cd.bmduka.com.Adapter.ProduitAdapter
 import cd.bmduka.com.Model.Produit
-import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.Model.homecategorie
 import cd.bmduka.com.Utils.Utils
 import cd.bmduka.com.View.AddShopFragment
-import cd.bmduka.com.View.SearchByImageActivity
 import cd.bmduka.com.ViewModel.MainViewModel
 import cd.bmduka.com.databinding.FragmentHomeBinding
 import com.google.firebase.database.DataSnapshot

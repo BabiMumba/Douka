@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import cd.bmduka.com.Adapter.ShopAdapter
 import cd.bmduka.com.Adapter.ShopCartAdapter
 import cd.bmduka.com.Model.Boutique
-import cd.bmduka.com.Model.SliderModel
 import cd.bmduka.com.R
 import cd.bmduka.com.Utils.MapHelper
 import cd.bmduka.com.Utils.ShopRepository

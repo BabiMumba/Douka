@@ -73,7 +73,11 @@ class ChatFragment : Fragment() {
 
 
     override fun onResume() {
-        iniTMessage()
+        if (Utils.IsConnected(requireContext())){
+            iniTMessage()
+        }else{
+            Utils.showToast(requireContext(),"Veuillez vous connecter")
+        }
         super.onResume()
     }
 
