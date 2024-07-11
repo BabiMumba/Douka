@@ -52,8 +52,8 @@ class ProfileFragment : Fragment() {
         }
         binding.managerShop.setOnClickListener {
             // Ouvrir le fragment d'ajout de boutique
-            val fragment = AddShopFragment()
-            Utils.loadfragemnt(requireActivity(),fragment)
+           /* val fragment = AddShopFragment()
+            Utils.loadfragemnt(requireActivity(),fragment)*/
         }
         val sharepref = context?.getSharedPreferences(DATA.PREF_NAME,Context.MODE_PRIVATE)
         val name = sharepref!!.getString("name","")

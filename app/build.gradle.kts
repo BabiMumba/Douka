@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "cd.bmduka.com"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
-    // implementation(libs.firebase.ml.vision)
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
@@ -68,8 +67,13 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("androidx.transition:transition:1.4.1")
     implementation ("com.google.maps:google-maps-services:0.9.3")
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
+    implementation ("com.google.maps.android:android-maps-utils:2.3.0")
 
    // implementation ("com.twilio.sdk:twilio:6.0.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.2")
+
+    //mapbox
 
 
 

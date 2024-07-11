@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainViewModel():ViewModel() {
-    private val firebaseDatabase = FirebaseDatabase.getInstance()
     val db = FirebaseFirestore.getInstance()
     val mydb = FirebaseDatabase.getInstance()
     val auth = Firebase.auth
