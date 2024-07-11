@@ -75,7 +75,6 @@ class ProfileFragment : Fragment() {
         dialogue.setTitle("Deconnexion")
         dialogue.setMessage("Voulez-vous vraiment vous deconnecter ?")
         dialogue.setPositiveButton("Oui") { dialog, which ->
-            //deconnexion
             mainViewModel.logout(requireActivity())
             Utils.newIntent(requireActivity(),SplashActivity::class.java)
             requireActivity().finish()
