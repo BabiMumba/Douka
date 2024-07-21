@@ -59,6 +59,5 @@ git clone https://github.com/BabiMumba/Duka.git
 ```
 2. lancer Android studio puis importer les projets
 
-
-                        par babi mumba
-                        13/07/2024 L3 Genie Logiciel (esisalama) UDBL Actuellement 
+*par babi mumba
+13/07/2024 etudiant en Bac2 Genie Logiciel a (esisalama) UDBL Actuellement*
